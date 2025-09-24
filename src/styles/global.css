@@ -5,7 +5,7 @@
 @theme {
   --color-brand-primary: rgba(240, 249, 90, 1);
   --color-brand-secondary: rgba(237, 71, 113, 1);
-  --color-bg-color: rgba(15, 15, 15, 1);
+  --color-main-black: rgba(15, 15, 15, 1);
 
   --shadow-glow: 0 0 10px rgb(0 0 0 / 0.1);
   --default-font-family: "Urbanist", sans-serif;
@@ -48,7 +48,7 @@ body {
   height: 100%;
   font-family: var(--default-font-family);
   color: var(--color-gray-100);
-  background-color: var(--color-bg-color);
+  background-color: var(--color-main-black);
   letter-spacing: -0.01em;
   font-size: 16px;
   scroll-behavior: smooth;

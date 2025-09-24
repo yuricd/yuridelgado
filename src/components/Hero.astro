@@ -1,6 +1,7 @@
 ---
 import { Navbar } from "@/components/Navbar/Navbar";
 import { Typography } from "@/components/Typography/Typography";
+import Carousel from "@/components/Carousel/Carousel";
 import ReactIcon from "~icons/simple-icons/react";
 import NodeIcon from "~icons/simple-icons/nodedotjs";
 import TsIcon from "~icons/simple-icons/tsnode";
@@ -70,7 +71,7 @@ const techIcons = [
         {
           techIcons.map(({ name, Icon }) => (
             <button class="opacity-25 hover:opacity-90 transition-opacity duration-300">
-              <Icon className="size-15 text-gray-300" />
+              <Icon className="size-14 text-gray-300" />
             </button>
           ))
         }
@@ -78,5 +79,5 @@ const techIcons = [
     </div>
   </div>
 
-  <div class="bg-brand-primary h-12">list</div>
+  <Carousel client:load />
 </div>

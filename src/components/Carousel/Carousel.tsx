@@ -1,0 +1,51 @@
+import useEmblaCarousel from "embla-carousel-react";
+import AutoScroll from "embla-carousel-auto-scroll";
+
+const bannerText = [
+  "Freelance consultant",
+  "Open for full-time remote roles",
+  "Full-stack developer",
+  "9+ years of experience",
+  "Based in western Europe",
+  "First, plan. Then, code.",
+  "Freelance consultant",
+  "Open for full-time remote roles",
+  "Full-stack developer",
+  "9+ years of experience",
+  "Based in western Europe",
+  "First, plan. Then, code.",
+];
+
+export default function Carousel() {
+  const [emblaRef] = useEmblaCarousel(
+    {
+      loop: true,
+      align: "start",
+    },
+    [
+      AutoScroll({
+        speed: 0.5,
+        startDelay: 0,
+        stopOnInteraction: false,
+        stopOnMouseEnter: false,
+      }),
+    ]
+  );
+
+  return (
+    <div className="relative flex items-center w-full bg-brand-primary h-12">
+      <div className="overflow-hidden w-full" ref={emblaRef}>
+        <div className="flex">
+          {bannerText.map((text, idx) => (
+            <div key={idx} className="flex-[0_0_auto] flex items-center">
+              <span className="font-medium text-main-black whitespace-nowrap">
+                {text}
+              </span>
+              <div className="size-1 bg-main-black mx-4" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
