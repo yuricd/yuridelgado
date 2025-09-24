@@ -33,7 +33,7 @@ const techIcons = [
 <div class="h-svh flex flex-col">
   <Navbar />
 
-  <div class="flex flex-col flex-1 gap-48 justify-center">
+  <div class="flex flex-col flex-1 gap-36 justify-center">
     <div class="flex flex-col w-6xl mx-auto max-w-11/12">
       <svg viewBox="0 0 1200 150" class="w-full">
         <defs>
@@ -69,7 +69,9 @@ const techIcons = [
       <div class="flex gap-8">
         {
           techIcons.map(({ name, Icon }) => (
-            <Icon className="size-12 text-gray-400" />
+            <button class="opacity-25 hover:opacity-90 transition-opacity duration-300">
+              <Icon className="size-15 text-gray-300" />
+            </button>
           ))
         }
       </div>
