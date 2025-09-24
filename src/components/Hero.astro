@@ -2,32 +2,21 @@
 import { Navbar } from "@/components/Navbar/Navbar";
 import { Typography } from "@/components/Typography/Typography";
 import Carousel from "@/components/Carousel/Carousel";
-import ReactIcon from "~icons/simple-icons/react";
-import NodeIcon from "~icons/simple-icons/nodedotjs";
-import TsIcon from "~icons/simple-icons/tsnode";
-import NextIcon from "~icons/simple-icons/nextdotjs";
-import PythonIcon from "~icons/simple-icons/python";
-import AstroIcon from "~icons/simple-icons/astro";
-import TailwindIcon from "~icons/simple-icons/tailwindcss";
-import PostgresIcon from "~icons/simple-icons/postgresql";
-import ExpoIcon from "~icons/simple-icons/expo";
-import i18nIcon from "~icons/simple-icons/immersivetranslate";
-import AiIcon from "~icons/hugeicons/ai-network";
-import MoreIcon from "~icons/hugeicons/more-horizontal-square-02";
+import TechList from "./TechList/TechList";
 
 const techIcons = [
-  { Icon: ReactIcon, name: "React", content: "" },
-  { Icon: NodeIcon, name: "Node.js", content: "" },
-  { Icon: TsIcon, name: "TypeScript", content: "" },
-  { Icon: NextIcon, name: "Next.js", content: "" },
-  { Icon: PythonIcon, name: "Python", content: "" },
-  { Icon: AstroIcon, name: "Astro", content: "" },
-  { Icon: TailwindIcon, name: "Tailwind", content: "" },
-  { Icon: PostgresIcon, name: "PostgreSQL", content: "" },
-  { Icon: ExpoIcon, name: "Expo", content: "" },
-  { Icon: i18nIcon, name: "i18n", content: "" },
-  { Icon: AiIcon, name: "AI", content: "" },
-  { Icon: MoreIcon, name: "More", content: "" },
+  { iconName: "simple-icons:react", name: "React" },
+  { iconName: "simple-icons:nodedotjs", name: "Node.js" },
+  { iconName: "simple-icons:tsnode", name: "TypeScript" },
+  { iconName: "simple-icons:nextdotjs", name: "Next.js" },
+  { iconName: "simple-icons:python", name: "Python" },
+  { iconName: "simple-icons:astro", name: "Astro" },
+  { iconName: "simple-icons:tailwindcss", name: "Tailwind" },
+  { iconName: "simple-icons:postgresql", name: "PostgreSQL" },
+  { iconName: "simple-icons:expo", name: "Expo" },
+  { iconName: "simple-icons:immersivetranslate", name: "i18n" },
+  { iconName: "hugeicons:ai-network", name: "AI" },
+  { iconName: "hugeicons:more-horizontal-square-02", name: "More" },
 ];
 ---
 
@@ -67,15 +56,7 @@ const techIcons = [
     </div>
 
     <div class="flex justify-center w-6xl mx-auto max-w-11/12">
-      <div class="flex gap-8">
-        {
-          techIcons.map(({ name, Icon }) => (
-            <button class="opacity-25 hover:opacity-90 transition-opacity duration-300">
-              <Icon className="size-14 text-gray-300" />
-            </button>
-          ))
-        }
-      </div>
+      <TechList client:load />
     </div>
   </div>
 
