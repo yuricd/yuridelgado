@@ -42,6 +42,15 @@ importers:
         specifier: ^4.1.13
         version: 4.1.13
     devDependencies:
+      '@iconify-json/hugeicons':
+        specifier: ^1.2.16
+        version: 1.2.16
+      '@iconify-json/simple-icons':
+        specifier: ^1.2.53
+        version: 1.2.53
+      '@iconify/json':
+        specifier: ^2.2.387
+        version: 2.2.387
       '@svgr/plugin-svgo':
         specifier: ^8.1.0
         version: 8.1.0(@svgr/core@8.1.0(typescript@5.9.2))(typescript@5.9.2)
@@ -333,6 +342,15 @@ packages:
 
   '@fontsource/urbanist@5.2.7':
     resolution: {integrity: sha512-tZE4qBBu+VBpfw8yMeLl6fzbY1sb4dnACXZLzlInp1KNONks47G/OYPY8yZajpeFQudLZlpVJu3xfS1Ph/QaFg==}
+
+  '@iconify-json/hugeicons@1.2.16':
+    resolution: {integrity: sha512-Ow0ig3yNY1VPZLBYYNVAAHA2jvSUoHbmtHzo87SnvA5rpDZVH6FMONeyro8LO31ReVwbaTVv9Mnd7yUXMFRufA==}
+
+  '@iconify-json/simple-icons@1.2.53':
+    resolution: {integrity: sha512-8GEW5mshsPAZpVAJmkBG/niR2qn8t4U03Wmz6aSD9R4VMZKTECqbOxH3z4inA0JfZOoTvP4qoK9T2VXAx2Xg5g==}
+
+  '@iconify/json@2.2.387':
+    resolution: {integrity: sha512-R1PTcM799jGSqHNfzggGqEQA+bQry/X/ckoISJIMKZdC9cz4pYWrWZsRGU50DmYkqTcC9aBQcSLOZxBFHTVT3Q==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -1672,6 +1690,9 @@ packages:
     resolution: {integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==}
     engines: {node: '>=8'}
 
+  pathe@1.1.2:
+    resolution: {integrity: sha512-whLdWMYL2TwI08hn8/ZqAbrVemu0LNaNNJZX73O6qaIdCTfXutsLhMkjdENX0qhsQ9uIimo4/aQOmXkoon2nDQ==}
+
   pathe@2.0.3:
     resolution: {integrity: sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w==}
 
@@ -2472,6 +2493,19 @@ snapshots:
     optional: true
 
   '@fontsource/urbanist@5.2.7': {}
+
+  '@iconify-json/hugeicons@1.2.16':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/simple-icons@1.2.53':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify/json@2.2.387':
+    dependencies:
+      '@iconify/types': 2.0.0
+      pathe: 1.1.2
 
   '@iconify/types@2.0.0': {}
 
@@ -4011,6 +4045,8 @@ snapshots:
       entities: 6.0.1
 
   path-type@4.0.0: {}
+
+  pathe@1.1.2: {}
 
   pathe@2.0.3: {}
 

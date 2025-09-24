@@ -1,39 +1,80 @@
 ---
 import { Navbar } from "@/components/Navbar/Navbar";
 import { Typography } from "@/components/Typography/Typography";
+import ReactIcon from "~icons/simple-icons/react";
+import NodeIcon from "~icons/simple-icons/nodedotjs";
+import TsIcon from "~icons/simple-icons/tsnode";
+import NextIcon from "~icons/simple-icons/nextdotjs";
+import PythonIcon from "~icons/simple-icons/python";
+import AstroIcon from "~icons/simple-icons/astro";
+import TailwindIcon from "~icons/simple-icons/tailwindcss";
+import PostgresIcon from "~icons/simple-icons/postgresql";
+import ExpoIcon from "~icons/simple-icons/expo";
+import i18nIcon from "~icons/simple-icons/immersivetranslate";
+import AiIcon from "~icons/hugeicons/ai-network";
+import MoreIcon from "~icons/hugeicons/more-horizontal-square-02";
+
+const techIcons = [
+  { Icon: ReactIcon, name: "React", content: "" },
+  { Icon: NodeIcon, name: "Node.js", content: "" },
+  { Icon: TsIcon, name: "TypeScript", content: "" },
+  { Icon: NextIcon, name: "Next.js", content: "" },
+  { Icon: PythonIcon, name: "Python", content: "" },
+  { Icon: AstroIcon, name: "Astro", content: "" },
+  { Icon: TailwindIcon, name: "Tailwind", content: "" },
+  { Icon: PostgresIcon, name: "PostgreSQL", content: "" },
+  { Icon: ExpoIcon, name: "Expo", content: "" },
+  { Icon: i18nIcon, name: "i18n", content: "" },
+  { Icon: AiIcon, name: "AI", content: "" },
+  { Icon: MoreIcon, name: "More", content: "" },
+];
 ---
 
 <div class="h-svh flex flex-col">
   <Navbar />
 
-  <div class="flex flex-col flex-1 justify-center mx-auto w-6xl max-w-11/12">
-    <svg viewBox="0 0 1200 150" class="w-full">
-      <defs>
-        <linearGradient id="text-stroke-gradient" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="white" stop-opacity="1"></stop>
-          <stop offset="75%" stop-color="white" stop-opacity="0"></stop>
-        </linearGradient>
-      </defs>
-      <text
-        x="50%"
-        y="50%"
-        text-anchor="middle"
-        dominant-baseline="middle"
-        font-size="160"
-        font-weight="700"
-        font-family="Urbanist, sans-serif"
-        fill="transparent"
-        stroke="url(#text-stroke-gradient)"
-        stroke-width="1"
-        class="opacity-30"
-      >
-        YURI DELGADO
-      </text>
-    </svg>
+  <div class="flex flex-col flex-1 gap-48 justify-center">
+    <div class="flex flex-col w-6xl mx-auto max-w-11/12">
+      <svg viewBox="0 0 1200 150" class="w-full">
+        <defs>
+          <linearGradient id="text-stroke-gradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="white" stop-opacity="1"></stop>
+            <stop offset="75%" stop-color="white" stop-opacity="0"></stop>
+          </linearGradient>
+        </defs>
+        <text
+          x="50%"
+          y="50%"
+          text-anchor="middle"
+          dominant-baseline="middle"
+          font-size="160"
+          font-weight="700"
+          font-family="Urbanist, sans-serif"
+          fill="transparent"
+          stroke="url(#text-stroke-gradient)"
+          stroke-width="1"
+          class="opacity-30"
+        >
+          YURI DELGADO
+        </text>
+      </svg>
 
-    <Typography variant="header1" as="h1" className="text-center -mt-16">
-      I help you build your MVP and prototype the right way. <br />
-      Ship fast but ship right.
-    </Typography>
+      <Typography variant="header1" as="h1" className="text-center -mt-16">
+        I help you build your MVP and prototype the right way. <br />
+        Ship fast but ship right.
+      </Typography>
+    </div>
+
+    <div class="flex justify-center w-6xl mx-auto max-w-11/12">
+      <div class="flex gap-8">
+        {
+          techIcons.map(({ name, Icon }) => (
+            <Icon className="size-12 text-gray-400" />
+          ))
+        }
+      </div>
+    </div>
   </div>
+
+  <div class="bg-brand-primary h-12">list</div>
 </div>
