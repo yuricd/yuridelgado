@@ -1,12 +1,18 @@
 import { useState, useEffect } from "react";
 import Logo from "@/assets/logo.svg?react";
 import { cn } from "@/lib/utils";
+import Button from "@/components/Button/Button";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState<string>("");
 
-  const links = [["Home", "#home"]];
+  const links = [
+    ["Home", "#home"],
+    ["About me", "#"],
+    ["What I do", "#"],
+    ["My projects", "#"],
+  ];
 
   // handle scroll for navbar styling
   useEffect(() => {
@@ -66,7 +72,7 @@ export function Navbar() {
         <a href="/">
           <Logo
             className={cn(
-              "w-10 md:w-14 transition-all duration-300 text-gray-900"
+              "w-10 md:w-14 transition-all duration-300 text-white"
             )}
           />
         </a>
@@ -79,13 +85,15 @@ export function Navbar() {
               onClick={(e) => handleAnchorClick(href, e)}
               className={cn(
                 "transition-colors duration-300 px-3 py-1 rounded-lg",
-                active === href ? "bg-gray-50 font-medium" : "text-gray-700"
+                active === href ? "bg-gray-50 font-medium" : "text-gray-100"
               )}
             >
               {label}
             </a>
           ))}
         </nav>
+
+        <Button className={cn("bg-brand-primary")}>Let's talk</Button>
       </div>
     </>
   );
