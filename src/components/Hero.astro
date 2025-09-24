@@ -1,7 +1,39 @@
 ---
-import { Navbar } from "./Navbar/Navbar";
+import { Navbar } from "@/components/Navbar/Navbar";
+import { Typography } from "@/components/Typography/Typography";
 ---
 
-<div>
+<div class="h-svh flex flex-col">
   <Navbar />
+
+  <div class="flex flex-col flex-1 justify-center mx-auto w-6xl max-w-11/12">
+    <svg viewBox="0 0 1200 150" class="w-full">
+      <defs>
+        <linearGradient id="text-stroke-gradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="white" stop-opacity="1"></stop>
+          <stop offset="75%" stop-color="white" stop-opacity="0"></stop>
+        </linearGradient>
+      </defs>
+      <text
+        x="50%"
+        y="50%"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        font-size="160"
+        font-weight="700"
+        font-family="Urbanist, sans-serif"
+        fill="transparent"
+        stroke="url(#text-stroke-gradient)"
+        stroke-width="1"
+        class="opacity-30"
+      >
+        YURI DELGADO
+      </text>
+    </svg>
+
+    <Typography variant="header1" as="h1" className="text-center -mt-16">
+      I help you build your MVP and prototype the right way. <br />
+      Ship fast but ship right.
+    </Typography>
+  </div>
 </div>
