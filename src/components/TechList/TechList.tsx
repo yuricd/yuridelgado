@@ -1,7 +1,6 @@
 import * as HoverCard from "@radix-ui/react-hover-card";
 import { Icon } from "@iconify/react";
 import { Typography } from "../Typography/Typography";
-import type { PropsWithChildren } from "react";
 
 const techIcons = [
   {
@@ -78,25 +77,39 @@ const techIcons = [
   },
 ];
 
-interface PopoverButtonProps extends PropsWithChildren {
+interface PopoverButtonProps {
   name: string;
+  description: string;
+  iconName: string;
 }
 
-function PopoverButton({ name, children }: PopoverButtonProps) {
+function PopoverButton({ name, description, iconName }: PopoverButtonProps) {
   return (
-    <HoverCard.Root openDelay={0} closeDelay={0}>
-      <HoverCard.Trigger asChild>{children}</HoverCard.Trigger>
+    <HoverCard.Root openDelay={100} closeDelay={100}>
+      <HoverCard.Trigger asChild>
+        <button className="opacity-25 hover:opacity-100 transition-opacity duration-300">
+          <Icon
+            icon={iconName}
+            width="56"
+            height="56"
+            className="text-gray-100"
+          />
+        </button>
+      </HoverCard.Trigger>
 
       <HoverCard.Content
         side="top"
         align="center"
         sideOffset={6}
-        className="bg-gray-800 text-white text-sm rounded-md px-2 py-1 shadow-lg select-none"
+        className="bg-secondary-black text-white rounded-lg p-4 w-64 shadow-xl select-none"
       >
-        <Typography variant="body1" as="p">
+        <Typography variant="header3" as="h3" className="text-gray-300 mb-1">
           {name}
         </Typography>
-        <HoverCard.Arrow className="fill-gray-800" />
+        <Typography variant="body1" as="p" className="text-gray-400 text-sm">
+          {description}
+        </Typography>
+        <HoverCard.Arrow className="fill-secondary-black" />
       </HoverCard.Content>
     </HoverCard.Root>
   );
@@ -104,18 +117,14 @@ function PopoverButton({ name, children }: PopoverButtonProps) {
 
 export default function TechList() {
   return (
-    <div className="flex gap-10">
-      {techIcons.map(({ iconName, name }) => (
-        <PopoverButton key={name} name={name}>
-          <button className="opacity-25 hover:opacity-100 transition-opacity duration-300">
-            <Icon
-              icon={iconName}
-              width="56"
-              height="56"
-              className="text-gray-100"
-            />
-          </button>
-        </PopoverButton>
+    <div className="flex gap-10 flex-wrap">
+      {techIcons.map(({ iconName, name, description }) => (
+        <PopoverButton
+          key={name}
+          name={name}
+          description={description}
+          iconName={iconName}
+        />
       ))}
     </div>
   );
