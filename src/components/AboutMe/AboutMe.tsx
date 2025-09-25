@@ -1,5 +1,3 @@
-"use client";
-
 import { Typography } from "@/components/Typography/Typography";
 import { motion, type Variants } from "framer-motion";
 

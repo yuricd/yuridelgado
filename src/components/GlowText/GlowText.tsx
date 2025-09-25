@@ -1,9 +1,7 @@
-"use client";
-
 import { useState } from "react";
 
 export default function HeroText() {
-  const [mousePos, setMousePos] = useState({ x: 600, y: 75 }); // default center
+  const [mousePos, setMousePos] = useState({ x: 600, y: 75 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -13,8 +11,7 @@ export default function HeroText() {
     });
   };
 
-  // Calculate relative positions for gradient enhancement
-  const cx = (mousePos.x / 1200) * 100; // percentage
+  const cx = (mousePos.x / 1200) * 100;
   const cy = (mousePos.y / 150) * 100;
 
   return (
@@ -24,20 +21,17 @@ export default function HeroText() {
     >
       <svg viewBox="0 0 1200 150" className="w-full">
         <defs>
-          {/* Base linear gradient */}
           <linearGradient id="text-stroke-gradient" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="white" stopOpacity="1" />
             <stop offset="75%" stopColor="white" stopOpacity="0" />
           </linearGradient>
 
-          {/* Radial gradient used to enhance stroke dynamically */}
           <radialGradient id="mouse-glow" cx={`${cx}%`} cy={`${cy}%`} r="50%">
-            <stop offset="0%" stopColor="white" stopOpacity="0.3" />
-            <stop offset="90%" stopColor="white" stopOpacity="0" />
+            <stop offset="0%" stopColor="white" stopOpacity="0.2" />
+            <stop offset="75%" stopColor="white" stopOpacity="0" />
           </radialGradient>
         </defs>
 
-        {/* Original gradient stroke */}
         <text
           x="50%"
           y="50%"
@@ -54,7 +48,6 @@ export default function HeroText() {
           YURI DELGADO
         </text>
 
-        {/* Enhance stroke with mouse glow */}
         <text
           x="50%"
           y="50%"

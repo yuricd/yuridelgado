@@ -1,6 +1,7 @@
 import * as HoverCard from "@radix-ui/react-hover-card";
 import { Icon } from "@iconify/react";
 import { Typography } from "../Typography/Typography";
+import { motion, type Variants } from "framer-motion";
 
 const techIcons = [
   {
@@ -83,11 +84,29 @@ interface PopoverButtonProps {
   iconName: string;
 }
 
+const containerVariants: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: -20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeIn" },
+  },
+};
+
 function PopoverButton({ name, description, iconName }: PopoverButtonProps) {
   return (
-    <HoverCard.Root openDelay={100} closeDelay={100}>
+    <HoverCard.Root openDelay={0} closeDelay={0}>
       <HoverCard.Trigger asChild>
-        <button className="opacity-25 hover:opacity-100 transition-opacity duration-300">
+        <button className="opacity-25 hover:opacity-100 transition-opacity duration-200">
           <Icon
             icon={iconName}
             width="56"
@@ -117,15 +136,22 @@ function PopoverButton({ name, description, iconName }: PopoverButtonProps) {
 
 export default function TechList() {
   return (
-    <div className="flex gap-10 flex-wrap h-14">
+    <motion.div
+      className="flex gap-10 flex-wrap h-14"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+    >
       {techIcons.map(({ iconName, name, description }) => (
-        <PopoverButton
-          key={name}
-          name={name}
-          description={description}
-          iconName={iconName}
-        />
+        <motion.div key={name} variants={itemVariants}>
+          <PopoverButton
+            name={name}
+            description={description}
+            iconName={iconName}
+          />
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 }
