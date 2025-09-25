@@ -38,7 +38,7 @@ const tableVariant: Variants = {
   hidden: {},
   show: {
     transition: {
-      staggerChildren: 0.2, // delay between each row
+      staggerChildren: 0.2,
     },
   },
 };
