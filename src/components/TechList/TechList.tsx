@@ -106,7 +106,7 @@ function PopoverButton({ name, description, iconName }: PopoverButtonProps) {
         <Typography variant="header3" as="h3" className="text-gray-300 mb-1">
           {name}
         </Typography>
-        <Typography variant="body1" as="p" className="text-gray-400 text-sm">
+        <Typography variant="body1" as="p" className="text-gray-400">
           {description}
         </Typography>
         <HoverCard.Arrow className="fill-secondary-black" />
@@ -117,7 +117,7 @@ function PopoverButton({ name, description, iconName }: PopoverButtonProps) {
 
 export default function TechList() {
   return (
-    <div className="flex gap-10 flex-wrap">
+    <div className="flex gap-10 flex-wrap h-14">
       {techIcons.map(({ iconName, name, description }) => (
         <PopoverButton
           key={name}
