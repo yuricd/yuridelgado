@@ -45,6 +45,25 @@ export default function LetsTalkDialog({ children }: LetsTalkDialogProps) {
     );
   }, [form]);
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!isFormValid) return;
+
+    const res = await fetch("/api/send-contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+
+    const result = await res.json();
+    if (result.success) {
+      alert("Form submitted successfully!");
+      setForm({ name: "", email: "", phone: "", subject: "", message: "" });
+    } else {
+      alert("Failed to submit form: " + result.error);
+    }
+  };
+
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
@@ -68,7 +87,7 @@ export default function LetsTalkDialog({ children }: LetsTalkDialogProps) {
             Tell me a bit about you and what you need.
           </Typography>
 
-          <div className="flex flex-col gap-2 mt-4">
+          <form className="flex flex-col gap-2 mt-4" onSubmit={handleSubmit}>
             <input
               placeholder="Your name *"
               name="name"
@@ -103,10 +122,14 @@ export default function LetsTalkDialog({ children }: LetsTalkDialogProps) {
               value={form.message}
               onChange={handleChange}
             />
-            <Button className="bg-brand-primary" disabled={!isFormValid}>
+            <Button
+              className="bg-brand-primary"
+              disabled={!isFormValid}
+              type="submit"
+            >
               Send
             </Button>
-          </div>
+          </form>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
