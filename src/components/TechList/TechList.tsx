@@ -104,15 +104,15 @@ function PopoverButton({ name, children }: PopoverButtonProps) {
 
 export default function TechList() {
   return (
-    <div className="flex gap-8">
+    <div className="flex gap-10">
       {techIcons.map(({ iconName, name }) => (
         <PopoverButton key={name} name={name}>
-          <button className="opacity-25 hover:opacity-90 transition-opacity duration-300">
+          <button className="opacity-25 hover:opacity-100 transition-opacity duration-300">
             <Icon
               icon={iconName}
-              width="48"
-              height="48"
-              className="text-gray-300"
+              width="56"
+              height="56"
+              className="text-gray-100"
             />
           </button>
         </PopoverButton>

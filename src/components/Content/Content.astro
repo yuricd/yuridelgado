@@ -1,0 +1,19 @@
+---
+import AboutMe from "@/components/AboutMe/AboutMe";
+import WhatIDo from "@/components/WhatIDo/WhatIDo";
+import Projects from "@/components/Projects/Projects";
+---
+
+<div>
+  <section class="py-12 bg-secondary-black">
+    <AboutMe />
+  </section>
+
+  <section class="py-16">
+    <WhatIDo client:load />
+  </section>
+
+  <section class="py-16">
+    <Projects client:load />
+  </section>
+</div>

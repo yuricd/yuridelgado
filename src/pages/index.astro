@@ -1,10 +1,10 @@
 ---
-import Hero from "@/components/Hero.astro";
+import Hero from "@/components/Hero/Hero.astro";
 import Layout from "../layouts/Layout.astro";
-import Content from "@/components/Content/Content";
+import Content from "@/components/Content/Content.astro";
 ---
 
 <Layout>
   <Hero />
-  <Content client:load />
+  <Content />
 </Layout>
