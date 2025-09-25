@@ -57,18 +57,14 @@ export function Navbar() {
       <div className="w-full h-[80px]" />
       <div
         className={cn(
-          "fixed top-0 w-full z-50 flex h-24 px-6 md:px-12 justify-between items-center transition-all duration-200",
+          "fixed top-0 w-full z-50 flex h-24 px-6 md:px-12 justify-between items-center border-b border-b-transparent transition-all duration-200",
           scrolled
-            ? "bg-white/100 backdrop-blur-sm border-b border-gray-200 h-16"
+            ? "bg-main-black/100 backdrop-blur-sm border-white/10 h-16"
             : "bg-transparent"
         )}
       >
         <a href="/">
-          <Logo
-            className={cn(
-              "w-10 md:w-14 transition-all duration-300 text-white"
-            )}
-          />
+          <Logo className={cn("w-10 md:w-14 transition-all duration-300")} />
         </a>
 
         <nav className="hidden md:flex gap-6">
@@ -78,7 +74,7 @@ export function Navbar() {
               href={href}
               onClick={(e) => handleAnchorClick(href, e)}
               className={cn(
-                "transition-colors duration-300 px-3 py-1 rounded-lg",
+                "font-body font-medium transition-colors duration-300 px-3 py-1 rounded-lg uppercase",
                 active === href ? "bg-gray-50 font-medium" : "text-gray-100"
               )}
             >
