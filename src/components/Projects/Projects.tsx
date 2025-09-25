@@ -19,17 +19,6 @@ const projects = [
       alt: "OrbiGuide screenshot",
     },
   },
-  {
-    title: "Scholiast",
-    link: "scholiast.com",
-    stack: ["Python", "Selenium Web Drive"],
-    image: {
-      path: "/images/orbiguide-screenshot.webp",
-      width: 400,
-      height: 500,
-      alt: "sCholiast screenshot",
-    },
-  },
 ];
 
 export default function Projects() {
@@ -134,6 +123,9 @@ export default function Projects() {
                     <Typography
                       variant="link"
                       as="a"
+                      target="_blank"
+                      rel="nooopener noreferrer"
+                      href="https://orbiguide.com?utm_source=yuridelgado"
                       className="text-gray-100 flex gap-1 items-center"
                     >
                       <Icon
@@ -158,17 +150,15 @@ export default function Projects() {
                   </div>
                 </div>
 
-                <div className="relative flex-1 bg-gray-300">
-                  <div className="relative flex flex-col items-center w-full pb-24">
-                    <img
-                      src={image.path}
-                      alt={image.alt}
-                      width={image.width}
-                      height={image.height}
-                      className="bg-secondary-black px-5 pt-5 rounded-2xl"
-                      style={{ marginTop: -imageH }}
-                    />
-                  </div>
+                <div className="relative flex flex-col items-center w-full pb-12 flex-1 bg-gray-300">
+                  <img
+                    src={image.path}
+                    alt={image.alt}
+                    width={image.width}
+                    height={image.height}
+                    className="bg-secondary-black px-5 pt-5 rounded-2xl"
+                    style={{ marginTop: -imageH }}
+                  />
                 </div>
               </div>
             );

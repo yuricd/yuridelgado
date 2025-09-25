@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type HTMLAttributeAnchorTarget } from "react";
 
 type TypographyVariant =
   | "header1"
@@ -14,6 +14,8 @@ interface BaseTypographyProps {
   as?: React.ElementType;
   children: React.ReactNode;
   className?: string;
+  href?: string;
+  target?: HTMLAttributeAnchorTarget;
 }
 
 // Generic props, correctly inferring HTML element props
@@ -27,7 +29,7 @@ export function Typography<A extends React.ElementType = "p">({
   className = "",
   ...props
 }: TypographyProps<A>) {
-  const isAnchor = variant === "link" || "href" in props || as === "a";
+  const isAnchor = variant === "link" || as === "a" || "href" in (props ?? {});
   const Component: React.ElementType =
     as || (isAnchor ? "a" : variant.startsWith("header") ? "h2" : "p");
 

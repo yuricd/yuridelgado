@@ -14,9 +14,12 @@ const medias = [
 ];
 ---
 
-<footer class="py-8">
+<footer class="py-6">
   <div class="flex justify-between items-center w-5xl max-w-11/12 mx-auto">
-    <Logo width={20} />
+    <Logo
+      width={20}
+      class="opacity-50 transition-opacity duration-300 hover:opacity-100"
+    />
 
     <Typography variant="body1" as="p" className="text-sm opacity-50"
       >&copy; {new Date().getFullYear()} Yuri Delgado. All rights reserved.</Typography

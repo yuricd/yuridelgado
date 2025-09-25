@@ -3,7 +3,7 @@ import { Typography } from "../Typography/Typography";
 
 export default function LetsTalkBanner() {
   return (
-    <div className="flex w-full bg-brand-primary py-6">
+    <div className="flex w-full bg-brand-primary py-8">
       <div className="flex justify-center items-center w-5xl max-w-11/12 mx-auto gap-4">
         <Typography
           variant="header3"

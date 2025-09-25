@@ -30,7 +30,7 @@ const whatIDo = [
 
 export default function WhatIDo() {
   return (
-    <div className="flex flex-col items-center w-6xl max-w-11/12 mx-auto gap-16">
+    <div className="flex flex-col items-center w-6xl max-w-11/12 mx-auto gap-8">
       <Typography variant="header2" as="h2">
         What I do
       </Typography>
