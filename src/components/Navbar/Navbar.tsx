@@ -2,17 +2,11 @@ import { useState, useEffect } from "react";
 import Logo from "@/assets/logo.svg?react";
 import { cn } from "@/lib/utils";
 import Button from "@/components/Button/Button";
+import { links } from "./Navbar.utils";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState<string>("");
-
-  const links = [
-    ["Home", "#home"],
-    ["About me", "#"],
-    ["What I do", "#"],
-    ["My projects", "#"],
-  ];
 
   // handle scroll for navbar styling
   useEffect(() => {

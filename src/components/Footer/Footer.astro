@@ -1,0 +1,40 @@
+---
+import Logo from "@/assets/logo.svg";
+import LinkedinIcon from "~icons/simple-icons/linkedin";
+import GithubIcon from "~icons/simple-icons/github";
+import { Typography } from "../Typography/Typography";
+
+const medias = [
+  {
+    Icon: LinkedinIcon,
+    ariaLabel: "LinkedIn",
+    href: "https://www.linkedin.com/in/yuri-catarino-delgado/",
+  },
+  { Icon: GithubIcon, ariaLabel: "GitHub", href: "https://github.com/yuricd" },
+];
+---
+
+<footer class="py-4">
+  <div class="flex justify-between items-center w-5xl max-w-11/12 mx-auto">
+    <Logo width={20} />
+
+    <Typography variant="body1" as="p" className="text-sm opacity-50"
+      >&copy; {new Date().getFullYear()} Yuri Delgado. All rights reserved.</Typography
+    >
+
+    <nav class="flex gap-3">
+      {
+        medias.map(({ Icon, ariaLabel, href }) => (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={ariaLabel}
+          >
+            <Icon width="18" height="18" className="text-gray-100" />
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</footer>
