@@ -1,13 +1,16 @@
 import { cn } from "@/lib/utils";
-import type { PropsWithChildren } from "react";
+import type { PropsWithChildren, ButtonHTMLAttributes } from "react";
 
-interface ButtonProps extends PropsWithChildren {
+interface ButtonProps
+  extends PropsWithChildren,
+    ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
 }
 
-export default function Button({ children, className }: ButtonProps) {
+export default function Button({ children, className, ...props }: ButtonProps) {
   return (
     <button
+      {...props}
       className={cn(
         `cursor-pointer text-[1rem] font-semibold text-nowrap py-2 px-5 rounded-sm text-main-black border-2 border-transparent
           hover:brightness-95 

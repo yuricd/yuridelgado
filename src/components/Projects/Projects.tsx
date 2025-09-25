@@ -21,7 +21,7 @@ const projects = [
   },
   {
     title: "Scholiast - An Instagram comment bot",
-    link: "https://github.com/yuricd/scholiast",
+    link: "github.com/yuricd/scholiast",
     stack: ["Python", "Selenium Web Driver"],
     image: {
       path: "/images/scholiast-screenshot.webp",
@@ -58,7 +58,7 @@ export default function Projects() {
           as="h2"
           className="border border-gray-100 rounded-full px-4 py-1.5 font-medium"
         >
-          My projects
+          Projects
         </Typography>
 
         <div className="flex items-center w-full gap-2">

@@ -60,6 +60,22 @@ body {
   }
 }
 
+input,
+select,
+textarea {
+  background-color: transparent;
+  color: var(--color-gray-300);
+  padding: 8px 12px;
+  outline: none;
+
+  @apply bg-white/5 rounded-sm;
+}
+
+select option {
+  background-color: var(--color-secondary-black);
+  color: var(--color-gray-300);
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

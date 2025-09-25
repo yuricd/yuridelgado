@@ -3,6 +3,7 @@ import Logo from "@/assets/logo.svg?react";
 import { cn } from "@/lib/utils";
 import Button from "@/components/Button/Button";
 import { links } from "./Navbar.utils";
+import LetsTalkDialog from "@/components//LetsTalkDialog/LetsTalkDialog";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -83,7 +84,9 @@ export function Navbar() {
           ))}
         </nav>
 
-        <Button className={cn("bg-brand-primary")}>Let's talk</Button>
+        <LetsTalkDialog>
+          <Button className={cn("bg-brand-primary")}>Let's talk</Button>
+        </LetsTalkDialog>
       </div>
     </>
   );

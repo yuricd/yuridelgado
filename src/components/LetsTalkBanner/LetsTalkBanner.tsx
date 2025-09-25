@@ -1,5 +1,6 @@
-import Button from "../Button/Button";
-import { Typography } from "../Typography/Typography";
+import Button from "@/components/Button/Button";
+import LetsTalkDialog from "@/components/LetsTalkDialog/LetsTalkDialog";
+import { Typography } from "@/components/Typography/Typography";
 
 export default function LetsTalkBanner() {
   return (
@@ -12,7 +13,9 @@ export default function LetsTalkBanner() {
         >
           Have something in mind?
         </Typography>
-        <Button className="bg-white">Let's talk</Button>
+        <LetsTalkDialog>
+          <Button className="bg-white">Let's talk</Button>
+        </LetsTalkDialog>
       </div>
     </div>
   );
