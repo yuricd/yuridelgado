@@ -1,8 +1,6 @@
-"use client";
-
 import * as Dialog from "@radix-ui/react-dialog";
 
-import type { PropsWithChildren } from "react";
+import { useMemo, useState, type PropsWithChildren } from "react";
 import Button from "../Button/Button";
 import { Typography } from "../Typography/Typography";
 import { Icon } from "@iconify/react";
@@ -18,6 +16,35 @@ const subjects = [
 ];
 
 export default function LetsTalkDialog({ children }: LetsTalkDialogProps) {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const isEmailValid = (email: string) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  const isFormValid = useMemo(() => {
+    return (
+      form.name.trim() !== "" &&
+      form.subject.trim() !== "" &&
+      form.message.trim() !== "" &&
+      isEmailValid(form.email)
+    );
+  }, [form]);
+
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
@@ -42,19 +69,43 @@ export default function LetsTalkDialog({ children }: LetsTalkDialogProps) {
           </Typography>
 
           <div className="flex flex-col gap-2 mt-4">
-            <input placeholder="Your name" />
-            <input type="email" placeholder="Your e-mail" />
-            <input placeholder="Your phone number" />
-            <select>
-              <option>What you need</option>
+            <input
+              placeholder="Your name *"
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+            />
+            <input
+              type="email"
+              placeholder="Your e-mail *"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+            />
+            <input
+              placeholder="Your phone number"
+              name="phone"
+              value={form.phone}
+              onChange={handleChange}
+            />
+            <select name="subject" value={form.subject} onChange={handleChange}>
+              <option value="">What you need *</option>
               {subjects.map((subject) => (
                 <option key={subject} value={subject}>
                   {subject}
                 </option>
               ))}
             </select>
-
-            <textarea rows={6} placeholder="Tell me a bit what you need." />
+            <textarea
+              name="message"
+              rows={6}
+              placeholder="Tell me a bit what you need. *"
+              value={form.message}
+              onChange={handleChange}
+            />
+            <Button className="bg-brand-primary" disabled={!isFormValid}>
+              Send
+            </Button>
           </div>
         </Dialog.Content>
       </Dialog.Portal>

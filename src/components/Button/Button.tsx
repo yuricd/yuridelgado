@@ -16,7 +16,10 @@ export default function Button({ children, className, ...props }: ButtonProps) {
           hover:brightness-95 
           active:brightness-75 
           focus:border-white
-          transition-all duration-150`,
+          transition-all duration-150
+          disabled:opacity-20
+          disabled:cursor-not-allowed
+          `,
         className
       )}
     >
