@@ -4,7 +4,6 @@ type TypographyVariant =
   | "header1"
   | "header2"
   | "header3"
-  | "handwrite1"
   | "body1"
   | "body2"
   | "buttonLabel"
@@ -34,9 +33,8 @@ export function Typography<A extends React.ElementType = "p">({
 
   const variantClasses: Record<TypographyVariant, string> = {
     header1: "lg:text-4xl text-3xl leading-12",
-    header2: "text-4xl font-semibold tracking-tight",
-    header3: "text-xl tracking-tight",
-    handwrite1: "text-2xl font-family-handwrite tracking-tight",
+    header2: "text-4xl",
+    header3: "text-2xl",
     body1: "font-body",
     body2: "text-sm",
     buttonLabel: "text-sm font-medium uppercase tracking-wide",
