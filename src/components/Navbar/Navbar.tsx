@@ -34,7 +34,7 @@ export function Navbar() {
           }
         });
       },
-      { root: null, rootMargin: "-30% 0px -50% 0px", threshold: 0 }
+      { root: null, rootMargin: "-30% 0px -100% 0px", threshold: 0 }
     );
 
     sections.forEach((section) => observer.observe(section));
@@ -74,8 +74,8 @@ export function Navbar() {
               href={href}
               onClick={(e) => handleAnchorClick(href, e)}
               className={cn(
-                "font-body font-medium transition-colors duration-300 px-3 py-1 rounded-lg uppercase",
-                active === href ? "bg-gray-50 font-medium" : "text-gray-100"
+                "text-sm font-medium transition-colors duration-300 px-3 py-1 rounded-lg uppercase",
+                active === href ? "font-bold" : ""
               )}
             >
               {label}
