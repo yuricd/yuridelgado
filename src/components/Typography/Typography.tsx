@@ -35,7 +35,7 @@ export function Typography<A extends React.ElementType = "p">({
     header1: "lg:text-4xl text-3xl leading-12",
     header2: "text-4xl",
     header3: "text-2xl",
-    body1: "font-body",
+    body1: "",
     body2: "text-sm",
     buttonLabel: "text-sm font-medium uppercase tracking-wide",
     link: "text-brand-primary cursor-pointer hover:underline",
