@@ -19,6 +19,17 @@ const projects = [
       alt: "OrbiGuide screenshot",
     },
   },
+  {
+    title: "Scholiast - An Instagram comment bot",
+    link: "https://github.com/yuricd/scholiast",
+    stack: ["Python", "Selenium Web Driver"],
+    image: {
+      path: "/images/scholiast-screenshot.webp",
+      width: 858,
+      height: 410,
+      alt: "Scholiast screenshot",
+    },
+  },
 ];
 
 export default function Projects() {
@@ -41,7 +52,7 @@ export default function Projects() {
 
   return (
     <div className="flex flex-col gap-6 bg-main-black text-white">
-      <div className="flex flex-col items-center w-5xl max-w-11/12 mx-auto gap-6">
+      <div className="flex flex-col items-center w-5xl max-w-11/12 mx-auto gap-12">
         <Typography
           variant="body1"
           as="h2"
@@ -156,7 +167,7 @@ export default function Projects() {
                     alt={image.alt}
                     width={image.width}
                     height={image.height}
-                    className="bg-secondary-black px-5 pt-5 rounded-2xl"
+                    className="bg-secondary-black rounded-2xl"
                     style={{ marginTop: -imageH }}
                   />
                 </div>
