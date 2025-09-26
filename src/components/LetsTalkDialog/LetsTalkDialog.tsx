@@ -125,6 +125,11 @@ export default function LetsTalkDialog({
             Tell me a bit about you and what you need.
           </Typography>
 
+          <Typography variant="body2" as="p" className="text-gray-300 mt-4">
+            FYI: I speak Portuguese, English, and Spanish. Feel free to use
+            whichever language you prefer.
+          </Typography>
+
           <form className="flex flex-col gap-2 mt-4" onSubmit={handleSubmit}>
             <input
               placeholder="Your name *"

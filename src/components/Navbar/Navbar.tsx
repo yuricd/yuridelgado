@@ -65,7 +65,11 @@ export function Navbar() {
         )}
       >
         <a href="/">
-          <Logo className={cn("w-10 md:w-14 transition-all duration-300")} />
+          <Logo
+            className={cn(
+              "text-gray-100/75 size-5 transition-all duration-300 hover:text-gray-100"
+            )}
+          />
         </a>
 
         <nav className="hidden md:flex gap-6">
