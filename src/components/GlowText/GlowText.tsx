@@ -16,7 +16,7 @@ export default function HeroText() {
 
   return (
     <div
-      className="relative w-full h-[150px] flex justify-center items-center"
+      className="relative w-full h-[150px] flex justify-center items-center cursor-default select-none"
       onMouseMove={handleMouseMove}
     >
       <svg viewBox="0 0 1200 150" className="w-full">

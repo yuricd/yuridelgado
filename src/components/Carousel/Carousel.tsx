@@ -4,7 +4,7 @@ import { Typography } from "../Typography/Typography";
 
 const bannerText = [
   "Freelance consultant",
-  "Open for full-time B2B remote roles",
+  "Open to full-time B2B remote roles",
   "Full-stack developer",
   "9+ years of experience",
   "Based in western Europe",

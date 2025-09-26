@@ -3,7 +3,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-brand-primary: rgba(240, 249, 90, 1);
+  --color-brand-primary: rgba(202, 210, 77, 1);
   --color-brand-secondary: rgba(237, 71, 113, 1);
   --color-main-black: rgba(15, 15, 15, 1);
   --color-secondary-black: rgba(25, 25, 25, 1);

@@ -36,7 +36,7 @@ export default function AboutMe() {
       </motion.div>
 
       <motion.div className="flex flex-col gap-4" variants={itemVariants}>
-        <Typography variant="body1" as="p">
+        <Typography variant="body1" as="p" className="opacity-75">
           I’m a software engineer with a bachelor’s degree in Computer Science
           and experience in leadership and growth. My background spans
           consulting, financial services, healthcare, real estate, and life
@@ -48,7 +48,7 @@ export default function AboutMe() {
           over-engineering.
         </Typography>
 
-        <Typography variant="body1" as="p">
+        <Typography variant="body1" as="p" className="opacity-75">
           Not every problem is a nail, and I strive to be prepared with the
           right solution.
         </Typography>
