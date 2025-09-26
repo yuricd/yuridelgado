@@ -161,13 +161,13 @@ export default function Projects() {
                   </div>
                 </div>
 
-                <div className="relative flex flex-col items-center w-full pb-12 flex-1 bg-gray-300">
+                <div className="relative flex flex-col items-center w-full lg:pb-12 flex-1 bg-gray-300">
                   <img
                     src={image.path}
                     alt={image.alt}
                     width={image.width}
                     height={image.height}
-                    className="bg-secondary-black rounded-2xl"
+                    className="bg-secondary-black rounded-2xl max-w-11/12"
                     style={{ marginTop: -imageH }}
                   />
                 </div>

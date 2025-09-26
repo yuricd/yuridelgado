@@ -81,36 +81,31 @@ export default function WhatIDo() {
       >
         <tbody>
           {whatIDo.map(({ title, description, subject }) => (
-            <motion.tr
+            <motion.div
               key={title}
-              className="border-b border-white/10"
               variants={rowVariant}
+              className="flex flex-col md:flex-row justify-between border-b border-white/10 py-8 gap-4"
             >
-              <td className="py-8 px-4 whitespace-nowrap">
+              <div className="flex flex-col gap-2">
                 <Typography variant="header3" as="p">
                   {title}
                 </Typography>
-              </td>
-
-              <td className="py-8 px-4">
                 <Typography variant="body1" as="p">
                   {description}
                 </Typography>
-              </td>
+              </div>
 
-              <td className="py-8 px-4 whitespace-nowrap text-right">
-                <LetsTalkDialog selectSubject={subject}>
-                  <button className="group flex justify-center items-center size-12 cursor-pointer border border-brand-primary rounded-full hover:bg-brand-primary transition-all duration-200">
-                    <Icon
-                      icon="hugeicons:arrow-up-right-01"
-                      width="24"
-                      height="24"
-                      className="text-brand-primary group-hover:text-main-black"
-                    />
-                  </button>
-                </LetsTalkDialog>
-              </td>
-            </motion.tr>
+              <LetsTalkDialog selectSubject={subject}>
+                <button className="self-end md:self-center w-12 h-12 flex justify-center items-center flex-shrink-0 group cursor-pointer border border-brand-primary rounded-full hover:bg-brand-primary transition-all duration-200">
+                  <Icon
+                    icon="hugeicons:arrow-up-right-01"
+                    width="24"
+                    height="24"
+                    className="flex-shrink-0 text-brand-primary group-hover:text-main-black"
+                  />
+                </button>
+              </LetsTalkDialog>
+            </motion.div>
           ))}
         </tbody>
       </motion.table>

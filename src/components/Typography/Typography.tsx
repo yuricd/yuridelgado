@@ -34,7 +34,7 @@ export function Typography<A extends React.ElementType = "p">({
     as || (isAnchor ? "a" : variant.startsWith("header") ? "h2" : "p");
 
   const variantClasses: Record<TypographyVariant, string> = {
-    header1: "lg:text-4xl text-3xl leading-12",
+    header1: "lg:text-4xl lg:leading-12 text-3xl leading-10",
     header2: "text-4xl",
     header3: "text-2xl",
     body1: "",
