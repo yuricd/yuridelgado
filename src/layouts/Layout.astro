@@ -4,6 +4,8 @@ import "@fontsource/urbanist/500";
 import "@fontsource/urbanist/600";
 import "@fontsource/urbanist/700";
 
+import "../styles/global.css";
+
 const ldSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -38,15 +40,6 @@ const descriptionDefault =
     />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link
-      rel="preload"
-      href="/src/styles/global.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link rel="stylesheet" href="/src/styles/global.css" />
-    </noscript>
 
     <script type="application/ld+json" set:html={JSON.stringify(ldSchema)} />
     <meta name="generator" content={Astro.generator} />

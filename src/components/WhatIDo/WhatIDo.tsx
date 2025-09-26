@@ -95,7 +95,10 @@ export default function WhatIDo() {
             </div>
 
             <LetsTalkDialog selectSubject={subject}>
-              <button className="self-end md:self-center w-12 h-12 flex justify-center items-center flex-shrink-0 group cursor-pointer border border-brand-primary rounded-full hover:bg-brand-primary transition-all duration-200">
+              <button
+                className="self-end md:self-center w-12 h-12 flex justify-center items-center flex-shrink-0 group cursor-pointer border border-brand-primary rounded-full hover:bg-brand-primary transition-all duration-200"
+                aria-label={`Let's talk about ${title}`}
+              >
                 <Icon
                   icon="hugeicons:arrow-up-right-01"
                   width="24"

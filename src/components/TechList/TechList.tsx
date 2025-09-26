@@ -8,73 +8,73 @@ const techIcons = [
     iconName: "simple-icons:react",
     name: "React",
     description:
-      "My go-to solution for SPAs. It’s flexible, has a great and huge community, and it’s used and supported by many frameworks, such as Next.js and Astro.",
+      "My go-to solution for SPAs. It’s flexible, has a large and active community, and is supported by many frameworks such as Next.js and Astro.",
   },
   {
     iconName: "simple-icons:nodedotjs",
     name: "Node.js",
     description:
-      "High I/O capabilities, huge community with a myriad with different packages, an easy to maintain in a cross-functional team.",
+      "High I/O capabilities, a huge community with a myriad of packages, and easy to maintain in a cross-functional team.",
   },
   {
     iconName: "simple-icons:tsnode",
     name: "TypeScript",
     description:
-      "JavaScript is becoming the lingua franca, and Typescript is its superset to bring static types to it. I can’t even remember when was the last time I built a JS app without Typescript.",
+      "JavaScript is becoming the lingua franca, and TypeScript is its superset that adds static types. I can’t even remember the last time I built a JS app without TypeScript.",
   },
   {
     iconName: "simple-icons:nextdotjs",
     name: "Next.js",
     description:
-      "For powerful and complex SSR websites in React, with a strong and growing community.",
+      "Ideal for powerful and complex SSR websites in React, with a strong and growing community.",
   },
   {
     iconName: "simple-icons:python",
     name: "Python",
     description:
-      "Time-proven technology. When it comes to data workloads and AI, Python rocks. For general-purpose or CPU-heavy tasks, Python is a good candidate.",
+      "A time-proven technology. When it comes to data workloads and AI, Python excels. For general-purpose or CPU-heavy tasks, Python is also a great choice.",
   },
   {
     iconName: "simple-icons:astro",
     name: "Astro",
     description:
-      "One of my newest and happiest findings. It’s an open-source framework that allows both static and SSR, and it has out of the box support to frameworks like Vue, Svelte, and React.",
+      "One of my newest and happiest discoveries. It’s an open-source framework that supports both static and SSR sites, with out-of-the-box integration for Vue, Svelte, and React.",
   },
   {
     iconName: "simple-icons:tailwindcss",
     name: "Tailwind",
     description:
-      "Allows to build responsive UIs quickly, without even touching CSS. It supports many utilities and customization with a seamless developer experience.",
+      "Enables building responsive UIs quickly without writing raw CSS. It offers many utilities and customization options with a seamless developer experience.",
   },
   {
     iconName: "simple-icons:postgresql",
     name: "PostgreSQL",
     description:
-      "Not all applications are suitable for a relational database, but for all the others I choose Postgres. It’s open-source, has powerful extensions, rich data types, and full-text search support. ",
+      "Not all applications need a relational database, but for those that do, I choose Postgres. It’s open-source, has powerful extensions, rich data types, and full-text search support.",
   },
   {
     iconName: "simple-icons:expo",
     name: "Expo",
     description:
-      "An open-source platform to build native apps for Android and iOS. It makes the development and integration of mobile apps with app stores much easier. ",
+      "An open-source platform for building native Android and iOS apps. It simplifies development and app store integration.",
   },
   {
     iconName: "simple-icons:immersivetranslate",
     name: "i18n",
     description:
-      "If you need to ship your app globally, internationalization is a must. Adding multi-lang support either in your front or backend is possible with i18n techniques.",
+      "Shipping apps globally requires internationalization. Adding multi-language support to the front or backend is possible with i18n techniques.",
   },
   {
     iconName: "hugeicons:ai-network",
     name: "AI",
     description:
-      "It’s a new era and AI can power your app, either in the client side or as a backoffice tool to streamline processes.",
+      "We’re in a new era where AI can power your app, either on the client side or as a backend tool to streamline processes.",
   },
   {
     iconName: "hugeicons:more-horizontal-square-02",
     name: "More",
     description:
-      "My approach is grounded in continuous learning, enabling me to select the most effective tools for each unique problem. I believe in having a diverse toolkit - not every problem is a nail, and I strive to be prepared with the right solution whether.",
+      "My approach is grounded in continuous learning, enabling me to select the most effective tools for each problem. I believe in having a diverse toolkit — not every problem is a nail — and I strive to be prepared with the right solution.",
   },
 ];
 

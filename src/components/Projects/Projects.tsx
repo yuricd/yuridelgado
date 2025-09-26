@@ -74,7 +74,7 @@ export default function Projects() {
             <Typography
               variant="body1"
               as="span"
-              className="text-gray-300/50 font-medium"
+              className="text-gray-300/60 font-medium"
             >
               / {projects.length}
             </Typography>
@@ -84,13 +84,14 @@ export default function Projects() {
             <button
               onClick={scrollPrev}
               className="p-1 rounded-full cursor-pointer"
+              aria-label="Previous slide"
             >
               <Icon
                 icon="hugeicons:arrow-left-01"
                 width={20}
                 height={20}
                 className={cn({
-                  "text-gray-300/50": selectedIndex + 1 === 1,
+                  "text-gray-300/60": selectedIndex + 1 === 1,
                 })}
               />
             </button>
@@ -98,13 +99,14 @@ export default function Projects() {
             <button
               onClick={scrollNext}
               className="p-1 rounded-full cursor-pointer"
+              aria-label="Next slide"
             >
               <Icon
                 icon="hugeicons:arrow-right-01"
                 width={20}
                 height={20}
                 className={cn({
-                  "text-gray-300/50": selectedIndex + 1 === projects.length,
+                  "text-gray-300/60": selectedIndex + 1 === projects.length,
                 })}
               />
             </button>
