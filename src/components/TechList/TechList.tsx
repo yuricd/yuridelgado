@@ -107,7 +107,7 @@ function PopoverButton({ name, description, iconName }: PopoverButtonProps) {
     <HoverCard.Root openDelay={0} closeDelay={0}>
       <HoverCard.Trigger asChild>
         <button className="opacity-25 hover:opacity-100 transition-opacity duration-200">
-          <Icon icon={iconName} className="text-gray-100 lg:size-14 size-10" />
+          <Icon icon={iconName} className="text-gray-100 lg:size-12 size-10" />
         </button>
       </HoverCard.Trigger>
 
@@ -136,7 +136,7 @@ function PopoverButton({ name, description, iconName }: PopoverButtonProps) {
 export default function TechList() {
   return (
     <motion.div
-      className="flex justify-center lg:gap-10 gap-6 flex-wrap lg:h-14"
+      className="flex justify-center lg:gap-8 gap-6 flex-wrap lg:h-14"
       variants={containerVariants}
       initial="hidden"
       whileInView="show"

@@ -110,6 +110,10 @@ export default function LetsTalkDialog({
         <Dialog.Overlay className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50" />
         <Dialog.Content className="fixed top-1/2 left-1/2 w-[90%] max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-secondary-black p-6 shadow-xl focus:outline-none z-50">
           <Dialog.Title className="sr-only">Contact form</Dialog.Title>
+          <Dialog.Description className="sr-only">
+            Contact form
+          </Dialog.Description>
+
           <div className="flex justify-between items-start mb-4">
             <Typography variant="header3" as="h3" className="text-gray-300">
               Let's talk
