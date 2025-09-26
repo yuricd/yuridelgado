@@ -5,15 +5,19 @@ import { Typography } from "@/components/Typography/Typography";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 
-type LetsTalkDialogProps = PropsWithChildren;
-
 const subjects = [
   "MVP or prototype",
   "App development",
   "UI to code",
   "Consulting session",
   "Other",
-];
+] as const;
+
+export type Subject = (typeof subjects)[number];
+
+export type LetsTalkDialogProps = PropsWithChildren & {
+  selectSubject?: Subject;
+};
 
 const getButtonLabel = (sending: boolean, sent: boolean) => {
   if (sending) {
@@ -34,14 +38,17 @@ const getButtonLabel = (sending: boolean, sent: boolean) => {
   return "Send";
 };
 
-export default function LetsTalkDialog({ children }: LetsTalkDialogProps) {
+export default function LetsTalkDialog({
+  selectSubject,
+  children,
+}: LetsTalkDialogProps) {
   const [sent, setSent] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
     phone: "",
-    subject: "",
+    subject: selectSubject ?? "",
     message: "",
   });
 
@@ -102,7 +109,7 @@ export default function LetsTalkDialog({ children }: LetsTalkDialogProps) {
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50" />
         <Dialog.Content className="fixed top-1/2 left-1/2 w-[90%] max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-secondary-black p-6 shadow-xl focus:outline-none z-50">
-          <Dialog.Title className="sr-only">name</Dialog.Title>
+          <Dialog.Title className="sr-only">Contact form</Dialog.Title>
           <div className="flex justify-between items-start mb-4">
             <Typography variant="header3" as="h3" className="text-gray-300">
               Let's talk

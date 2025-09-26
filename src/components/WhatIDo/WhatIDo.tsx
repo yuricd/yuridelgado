@@ -1,31 +1,37 @@
 import { Icon } from "@iconify/react";
-import { Typography } from "../Typography/Typography";
+import { Typography } from "@/components/Typography/Typography";
 import { motion, type Variants } from "framer-motion";
+import type { LetsTalkDialogProps } from "@/components/LetsTalkDialog/LetsTalkDialog";
+import LetsTalkDialog from "@/components/LetsTalkDialog/LetsTalkDialog";
 
-const whatIDo = [
+const whatIDo: {
+  title: string;
+  description: string;
+  subject: LetsTalkDialogProps["selectSubject"];
+}[] = [
   {
     title: "Prototypes and MVPs",
     description:
       "Have an idea and want to turn it into reality? From design to deployment I got you covered. I can help you avoid spending thousand of dollars with fancy cloud infrastructure when you still have no users.",
-    target: "#",
+    subject: "MVP or prototype",
   },
   {
     title: "Application development",
     description:
       "Once you gathered all the functional requirements, it’s time to turn it into a product. Backend, desktop, mobile, or web development are the key to make your product available timely.",
-    target: "#",
+    subject: "App development",
   },
   {
     title: "UI design to code",
     description:
       "Turn your designs into maintainable code following the best practices.",
-    target: "#",
+    subject: "UI to code",
   },
   {
     title: "Consulting session",
     description:
       "Not familiar with the development process or don’t know where to start? Let’s schedule a call and dive deep into your problem, or rather, your solution.",
-    target: "#",
+    subject: "Consulting session",
   },
 ];
 
@@ -74,7 +80,7 @@ export default function WhatIDo() {
         variants={tableVariant}
       >
         <tbody>
-          {whatIDo.map(({ title, description }) => (
+          {whatIDo.map(({ title, description, subject }) => (
             <motion.tr
               key={title}
               className="border-b border-white/10"
@@ -93,14 +99,16 @@ export default function WhatIDo() {
               </td>
 
               <td className="py-8 px-4 whitespace-nowrap text-right">
-                <button className="group flex justify-center items-center size-12 cursor-pointer border border-brand-primary rounded-full hover:bg-brand-primary transition-all duration-200">
-                  <Icon
-                    icon="hugeicons:arrow-up-right-01"
-                    width="24"
-                    height="24"
-                    className="text-brand-primary group-hover:text-main-black"
-                  />
-                </button>
+                <LetsTalkDialog selectSubject={subject}>
+                  <button className="group flex justify-center items-center size-12 cursor-pointer border border-brand-primary rounded-full hover:bg-brand-primary transition-all duration-200">
+                    <Icon
+                      icon="hugeicons:arrow-up-right-01"
+                      width="24"
+                      height="24"
+                      className="text-brand-primary group-hover:text-main-black"
+                    />
+                  </button>
+                </LetsTalkDialog>
               </td>
             </motion.tr>
           ))}
