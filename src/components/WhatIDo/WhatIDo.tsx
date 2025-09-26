@@ -90,11 +90,7 @@ export default function WhatIDo() {
                 <Typography variant="header3" as="p">
                   {title}
                 </Typography>
-                <Typography
-                  variant="body1"
-                  as="p"
-                  className="text-lg opacity-75"
-                >
+                <Typography variant="body1" as="p" className="opacity-75">
                   {description}
                 </Typography>
               </div>

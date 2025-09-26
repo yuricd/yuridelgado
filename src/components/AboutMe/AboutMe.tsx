@@ -23,7 +23,7 @@ const itemVariants: Variants = {
 export default function AboutMe() {
   return (
     <motion.div
-      className="flex w-4xl max-w-11/12 mx-auto gap-16"
+      className="flex flex-col lg:flex-row w-4xl max-w-11/12 mx-auto gap-8 lg:gap-16"
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.5 }}
