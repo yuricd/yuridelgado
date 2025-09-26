@@ -12,25 +12,25 @@ const whatIDo: {
   {
     title: "Prototypes and MVPs",
     description:
-      "Have an idea and want to turn it into reality? From design to deployment I got you covered. I can help you avoid spending thousand of dollars with fancy cloud infrastructure when you still have no users.",
+      "Got an idea? I’ll help you turn it into reality — from design to deployment. Avoid wasting thousands on fancy cloud setups before you even have users.",
     subject: "MVP or prototype",
   },
   {
     title: "Application development",
     description:
-      "Once you gathered all the functional requirements, it’s time to turn it into a product. Backend, desktop, mobile, or web development are the key to make your product available timely.",
+      "Turn requirements into a working product. Backend, desktop, mobile, or web — I craft the perfect solution for your needs.",
     subject: "App development",
   },
   {
     title: "UI design to code",
     description:
-      "Turn your designs into maintainable code following the best practices.",
+      "Transform your designs into clean, maintainable code that follows best practices.",
     subject: "UI to code",
   },
   {
     title: "Consulting session",
     description:
-      "Not familiar with the development process or don’t know where to start? Let’s schedule a call and dive deep into your problem, or rather, your solution.",
+      "Not sure where to start? Let’s dive into your problem (or solution) and map out the best path forward in a focused session.",
     subject: "Consulting session",
   },
 ];
@@ -90,7 +90,11 @@ export default function WhatIDo() {
                 <Typography variant="header3" as="p">
                   {title}
                 </Typography>
-                <Typography variant="body1" as="p">
+                <Typography
+                  variant="body1"
+                  as="p"
+                  className="text-lg opacity-75"
+                >
                   {description}
                 </Typography>
               </div>
