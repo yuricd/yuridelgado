@@ -4,7 +4,18 @@ import "@fontsource/urbanist/500";
 import "@fontsource/urbanist/600";
 import "@fontsource/urbanist/700";
 
-import "../styles/global.css";
+const ldSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Yuri Delgado",
+  url: "https://yuridelgado.dev",
+  description:
+    "I help you build your MVP and prototype the right way. Ship fast but ship right.",
+};
+
+const titleDefault = "Yuri Delgado";
+const descriptionDefault =
+  "I help you build your MVP and prototype the right way. Ship fast but ship right.";
 ---
 
 <!doctype html>
@@ -12,9 +23,46 @@ import "../styles/global.css";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <link rel="canonical" href="https://yuridelgado.dev" />
+    <meta name="description" content={descriptionDefault} />
+    <meta property="og:title" content={titleDefault} />
+    <meta property="og:description" content={descriptionDefault} />
+    <meta
+      property="og:image"
+      content="https://yuridelgado.dev/images/cover-logo.jpg"
+    />
+    <meta property="og:url" content="https://yuridelgado.dev" />
+    <meta
+      name="twitter:card"
+      content="https://yuridelgado.dev/images/cover-logo.jpg"
+    />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="preload"
+      href="/src/styles/global.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="/src/styles/global.css" />
+    </noscript>
+
+    <script type="application/ld+json" set:html={JSON.stringify(ldSchema)} />
     <meta name="generator" content={Astro.generator} />
-    <title>Yuri Delgado</title>
+    <title>{titleDefault}</title>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0B906R0SN7"
+    ></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-0B906R0SN7");
+    </script>
   </head>
   <body>
     <slot />

@@ -106,7 +106,10 @@ function PopoverButton({ name, description, iconName }: PopoverButtonProps) {
   return (
     <HoverCard.Root openDelay={0} closeDelay={0}>
       <HoverCard.Trigger asChild>
-        <button className="opacity-25 hover:opacity-100 transition-opacity duration-200">
+        <button
+          className="opacity-25 hover:opacity-100 transition-opacity duration-200"
+          aria-label={`See ${name}`}
+        >
           <Icon icon={iconName} className="text-gray-100 lg:size-12 size-10" />
         </button>
       </HoverCard.Trigger>

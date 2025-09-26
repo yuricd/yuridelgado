@@ -64,7 +64,7 @@ export function Navbar() {
             : "bg-transparent"
         )}
       >
-        <a href="/">
+        <a href="/" aria-label="Go to home">
           <Logo
             className={cn(
               "text-gray-100/75 size-5 transition-all duration-300 hover:text-gray-100"
