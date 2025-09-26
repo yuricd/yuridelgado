@@ -4,13 +4,7 @@ import { Typography } from "../Typography/Typography";
 
 const bannerText = [
   "Freelance consultant",
-  "Open for full-time remote roles",
-  "Full-stack developer",
-  "9+ years of experience",
-  "Based in western Europe",
-  "First, plan. Then, code.",
-  "Freelance consultant",
-  "Open for full-time remote roles",
+  "Open for full-time B2B remote roles",
   "Full-stack developer",
   "9+ years of experience",
   "Based in western Europe",
@@ -37,7 +31,7 @@ export default function Carousel() {
     <div className="relative flex items-center w-full bg-brand-primary h-12">
       <div className="overflow-hidden w-full" ref={emblaRef}>
         <div className="flex">
-          {bannerText.map((text, idx) => (
+          {[...bannerText, ...bannerText].map((text, idx) => (
             <div key={idx} className="flex-[0_0_auto] flex items-center">
               <Typography
                 as="p"

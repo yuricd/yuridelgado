@@ -122,7 +122,11 @@ function PopoverButton({ name, description, iconName }: PopoverButtonProps) {
         sideOffset={6}
         className="bg-secondary-black text-white rounded-lg p-4 w-64 shadow-xl select-none"
       >
-        <Typography variant="header3" as="h3" className="text-gray-300 mb-1">
+        <Typography
+          variant="body1"
+          as="p"
+          className="text-gray-300 mb-1 font-semibold"
+        >
           {name}
         </Typography>
         <Typography variant="body1" as="p" className="text-gray-400">

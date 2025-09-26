@@ -1,9 +1,9 @@
 import * as Dialog from "@radix-ui/react-dialog";
-
 import { useMemo, useState, type PropsWithChildren } from "react";
-import Button from "../Button/Button";
-import { Typography } from "../Typography/Typography";
+import Button from "@/components/Button/Button";
+import { Typography } from "@/components/Typography/Typography";
 import { Icon } from "@iconify/react";
+import { cn } from "@/lib/utils";
 
 type LetsTalkDialogProps = PropsWithChildren;
 
@@ -15,7 +15,28 @@ const subjects = [
   "Other",
 ];
 
+const getButtonLabel = (sending: boolean, sent: boolean) => {
+  if (sending) {
+    return (
+      <div className="flex items-center justify-center gap-2 cursor-wait">
+        <Icon
+          icon="hugeicons:reload"
+          className="text-main-black size-4 animate-spin"
+        />{" "}
+        Sending...
+      </div>
+    );
+  }
+
+  if (sent) {
+    return "Sent! Thank you 🎉";
+  }
+  return "Send";
+};
+
 export default function LetsTalkDialog({ children }: LetsTalkDialogProps) {
+  const [sent, setSent] = useState(false);
+  const [isSending, setIsSending] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -49,6 +70,8 @@ export default function LetsTalkDialog({ children }: LetsTalkDialogProps) {
     e.preventDefault();
     if (!isFormValid) return;
 
+    setIsSending(true);
+
     const res = await fetch("/api/send-contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -56,12 +79,20 @@ export default function LetsTalkDialog({ children }: LetsTalkDialogProps) {
     });
 
     const result = await res.json();
+
     if (result.success) {
-      alert("Form submitted successfully!");
+      setSent(true);
+
+      setTimeout(() => {
+        setSent(false);
+      }, 3000);
+
       setForm({ name: "", email: "", phone: "", subject: "", message: "" });
     } else {
       alert("Failed to submit form: " + result.error);
     }
+
+    setIsSending(false);
   };
 
   return (
@@ -93,6 +124,7 @@ export default function LetsTalkDialog({ children }: LetsTalkDialogProps) {
               name="name"
               value={form.name}
               onChange={handleChange}
+              maxLength={30}
             />
             <input
               type="email"
@@ -100,12 +132,14 @@ export default function LetsTalkDialog({ children }: LetsTalkDialogProps) {
               name="email"
               value={form.email}
               onChange={handleChange}
+              maxLength={30}
             />
             <input
               placeholder="Your phone number"
               name="phone"
               value={form.phone}
               onChange={handleChange}
+              maxLength={30}
             />
             <select name="subject" value={form.subject} onChange={handleChange}>
               <option value="">What you need *</option>
@@ -121,13 +155,16 @@ export default function LetsTalkDialog({ children }: LetsTalkDialogProps) {
               placeholder="Tell me a bit what you need. *"
               value={form.message}
               onChange={handleChange}
+              maxLength={300}
             />
             <Button
-              className="bg-brand-primary"
-              disabled={!isFormValid}
+              className={cn("bg-brand-primary", {
+                "bg-green-500 cursor-not-allowed": sent,
+              })}
+              disabled={(!isFormValid && !sent) || isSending}
               type="submit"
             >
-              Send
+              {getButtonLabel(isSending, sent)}
             </Button>
           </form>
         </Dialog.Content>
