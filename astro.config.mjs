@@ -4,7 +4,7 @@ import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import svgr from "vite-plugin-svgr";
 import Icons from "unplugin-icons/vite";
-import vercel from "@astrojs/vercel";
+import node from "@astrojs/node";
 
 import react from "@astrojs/react";
 
@@ -12,7 +12,7 @@ import react from "@astrojs/react";
 export default defineConfig({
   site: "https://yuridelgado.dev",
   output: "server",
-  adapter: vercel(),
+  adapter: node({ mode: "standalone" }),
   vite: {
     plugins: [
       tailwindcss(),
