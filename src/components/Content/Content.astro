@@ -1,5 +1,6 @@
 ---
 import AboutMe from "@/components/AboutMe/AboutMe";
+import LatestThoughts from "@/components/LatestThoughts/LatestThoughts";
 import WhatIDo from "@/components/WhatIDo/WhatIDo";
 import Projects from "@/components/Projects/Projects";
 import LetsTalkBanner from "@/components/LetsTalkBanner/LetsTalkBanner";
@@ -7,6 +8,10 @@ import Footer from "@/components/Footer/Footer.astro";
 ---
 
 <div>
+  <section id="blog" class="py-16">
+    <LatestThoughts client:load />
+  </section>
+
   <section id="about" class="py-16 bg-secondary-black">
     <AboutMe client:load />
   </section>

@@ -35,7 +35,7 @@ export function Navbar() {
           }
         });
       },
-      { root: null, rootMargin: "-30% 0px -100% 0px", threshold: 0 }
+      { root: null, rootMargin: "-30% 0px -100% 0px", threshold: 0 },
     );
 
     sections.forEach((section) => observer.observe(section));
@@ -61,13 +61,13 @@ export function Navbar() {
           "fixed top-0 w-full z-50 flex h-24 px-6 md:px-12 justify-between items-center border-b border-b-transparent transition-all duration-200",
           scrolled
             ? "bg-main-black/100 backdrop-blur-sm border-white/10 h-16"
-            : "bg-transparent"
+            : "bg-transparent",
         )}
       >
         <a href="/" aria-label="Go to home">
           <Logo
             className={cn(
-              "text-gray-100/75 size-5 transition-all duration-300 hover:text-gray-100"
+              "text-gray-100/75 size-7 transition-all duration-300 hover:text-white",
             )}
           />
         </a>
@@ -79,8 +79,8 @@ export function Navbar() {
               href={href}
               onClick={(e) => handleAnchorClick(href, e)}
               className={cn(
-                "text-sm font-medium transition-colors duration-300 px-3 py-1 rounded-lg uppercase",
-                active === href ? "font-bold" : ""
+                "text-sm font-medium transition-colors duration-300 px-3 py-2  border-b-2 border-transparent uppercase",
+                active === href ? "font-bold border-brand-primary" : "",
               )}
             >
               {label}
