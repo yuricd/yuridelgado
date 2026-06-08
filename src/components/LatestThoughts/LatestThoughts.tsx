@@ -1,24 +1,11 @@
 import { Icon } from "@iconify/react";
 import { Typography } from "@/components/Typography/Typography";
 import { motion, type Variants } from "framer-motion";
+import type { BlogPostPreview } from "@/lib/blog";
 
-const posts = [
-  {
-    date: "Nov 24, 2024",
-    title: "The architecture of high-performance dark mode interfaces.",
-    tag: "Engineering",
-  },
-  {
-    date: "Oct 12, 2024",
-    title: "Why brutalism is returning to the mainstream web.",
-    tag: "Design",
-  },
-  {
-    date: "Sep 05, 2024",
-    title: "Optimizing Next.js for maximum editorial impact.",
-    tag: "Next.js",
-  },
-];
+type LatestThoughtsProps = {
+  posts: BlogPostPreview[];
+};
 
 const headerVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -41,7 +28,7 @@ const articleVariants: Variants = {
   },
 };
 
-export default function LatestThoughts() {
+export default function LatestThoughts({ posts }: LatestThoughtsProps) {
   return (
     <div className="w-6xl max-w-11/12 mx-auto">
       <motion.div
@@ -65,7 +52,7 @@ export default function LatestThoughts() {
         </div>
 
         <a
-          href="#"
+          href="/#blog"
           className="text-brand-primary font-medium uppercase tracking-wide text-sm flex items-center gap-2 hover:gap-4 transition-all group pb-1 border-b border-brand-primary/20 hover:border-brand-primary"
         >
           Explore All Journal Entries
@@ -85,9 +72,10 @@ export default function LatestThoughts() {
         viewport={{ once: true, amount: 0.2 }}
         variants={gridVariants}
       >
-        {posts.map(({ date, title, tag }, index) => (
-          <motion.article
-            key={title}
+        {posts.map(({ slug, date, title, tags }, index) => (
+          <motion.a
+            key={slug}
+            href={`/blog/${slug}`}
             variants={articleVariants}
             className={`p-8 lg:p-10 group cursor-pointer transition-colors hover:bg-white/5 flex flex-col min-h-[280px] ${
               index < posts.length - 1
@@ -113,7 +101,7 @@ export default function LatestThoughts() {
 
             <div className="flex justify-between items-center">
               <span className="text-xs font-medium uppercase tracking-widest px-3 py-1 rounded-full bg-white/10 text-gray-100 group-hover:bg-brand-primary group-hover:text-main-black transition-colors">
-                {tag}
+                {tags[0]}
               </span>
               <Icon
                 icon="hugeicons:arrow-up-right-01"
@@ -122,7 +110,7 @@ export default function LatestThoughts() {
                 className="text-brand-primary translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all"
               />
             </div>
-          </motion.article>
+          </motion.a>
         ))}
       </motion.div>
     </div>

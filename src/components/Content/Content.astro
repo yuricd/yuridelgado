@@ -5,11 +5,14 @@ import WhatIDo from "@/components/WhatIDo/WhatIDo";
 import Projects from "@/components/Projects/Projects";
 import LetsTalkBanner from "@/components/LetsTalkBanner/LetsTalkBanner";
 import Footer from "@/components/Footer/Footer.astro";
+import { getAllPosts } from "@/lib/blog";
+
+const posts = await getAllPosts();
 ---
 
 <div>
   <section id="blog" class="py-16">
-    <LatestThoughts client:load />
+    <LatestThoughts posts={posts} client:load />
   </section>
 
   <section id="about" class="py-16 bg-secondary-black">

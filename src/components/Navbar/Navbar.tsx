@@ -8,6 +8,11 @@ import LetsTalkDialog from "@/components//LetsTalkDialog/LetsTalkDialog";
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState<string>("");
+  const [onHomePage, setOnHomePage] = useState(true);
+
+  useEffect(() => {
+    setOnHomePage(window.location.pathname === "/");
+  }, []);
 
   // handle scroll for navbar styling
   useEffect(() => {
@@ -18,9 +23,14 @@ export function Navbar() {
 
   // handle active section
   useEffect(() => {
+    if (window.location.pathname.startsWith("/blog")) {
+      setActive("/#blog");
+      return;
+    }
+
     const sections = links
       .map(([, href]) => {
-        const id = href.split("#")[1]; // get only the anchor id
+        const id = href.split("#")[1];
         return id ? document.getElementById(id) : null;
       })
       .filter(Boolean) as HTMLElement[];
@@ -31,7 +41,7 @@ export function Navbar() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActive(`#${entry.target.id}`);
+            setActive(`/#${entry.target.id}`);
           }
         });
       },
@@ -44,7 +54,7 @@ export function Navbar() {
 
   // handle click for smooth scroll on homepage
   const handleAnchorClick = (href: string, e: React.MouseEvent) => {
-    if (window.location.pathname === "/") {
+    if (onHomePage) {
       const id = href.split("#")[1];
       if (id) {
         e.preventDefault();
@@ -58,10 +68,10 @@ export function Navbar() {
       <div className="w-full h-[80px]" />
       <div
         className={cn(
-          "fixed top-0 w-full z-50 flex h-24 px-6 md:px-12 justify-between items-center border-b border-b-transparent transition-all duration-200",
-          scrolled
+          "fixed top-0 w-full z-50 flex h-24 px-6 md:px-12 justify-between items-center border-b transition-all duration-200",
+          scrolled || !onHomePage
             ? "bg-main-black/100 backdrop-blur-sm border-white/10 h-16"
-            : "bg-transparent",
+            : "border-b-transparent bg-transparent",
         )}
       >
         <a href="/" aria-label="Go to home">

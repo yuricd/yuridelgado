@@ -1,0 +1,101 @@
+---
+import BlogGhostText from "./BlogGhostText";
+import { formatDate } from "@/lib/blog";
+import type { BlogPostPreview } from "@/lib/blog";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  entry: CollectionEntry<"blog">;
+  nextPost?: BlogPostPreview;
+}
+
+const { entry, nextPost } = Astro.props;
+const { title, date, readingTime, tags } = entry.data;
+---
+
+<main class="pt-8 pb-24 px-6">
+  <div class="max-w-3xl mx-auto mb-16">
+    <a
+      href="/#blog"
+      class="group flex items-center gap-2 text-sm uppercase tracking-widest text-gray-300/60 hover:text-brand-primary transition-colors"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        class="flex-shrink-0"
+        fill="currentColor"
+      >
+        <path
+          d="M19 11H7.83l4.88-4.88a1 1 0 0 0-1.42-1.42l-6.59 6.59a1 1 0 0 0 0 1.42l6.59 6.59a1 1 0 0 0 1.42-1.42L7.83 13H19a1 1 0 0 0 0-2z"
+        ></path>
+      </svg>
+      Back to journal
+    </a>
+  </div>
+
+  <header class="max-w-4xl mx-auto mb-20 relative">
+    <BlogGhostText client:load />
+
+    <h1
+      class="relative z-10 lg:text-4xl lg:leading-12 text-3xl leading-10 mb-10"
+    >
+      {title}
+    </h1>
+
+    <div
+      class="flex flex-wrap gap-y-6 gap-x-12 py-8 border-y border-white/10"
+    >
+      <div class="flex flex-col gap-1">
+        <span class="text-xs uppercase tracking-widest text-gray-300/60">
+          Date
+        </span>
+        <span class="text-gray-100">{formatDate(date)}</span>
+      </div>
+      <div class="flex flex-col gap-1">
+        <span class="text-xs uppercase tracking-widest text-gray-300/60">
+          Reading Time
+        </span>
+        <span class="text-gray-100">{readingTime}</span>
+      </div>
+      <div class="flex flex-col gap-1">
+        <span class="text-xs uppercase tracking-widest text-gray-300/60">
+          Tags
+        </span>
+        <div class="flex gap-2 flex-wrap">
+          {
+            tags.map((item) => (
+              <span class="text-brand-primary border border-brand-primary/30 px-2 py-0.5 text-[10px] uppercase">
+                {item}
+              </span>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <article class="max-w-3xl mx-auto blog-content">
+    <slot />
+
+    {
+      nextPost && (
+        <div class="mt-20 pt-10 border-t border-white/10">
+          <h3 class="text-2xl mb-6">Next archive entry</h3>
+          <a
+            href={`/blog/${nextPost.slug}`}
+            class="group block p-8 bg-secondary-black hover:bg-white/5 transition-colors"
+          >
+            <span class="text-brand-primary text-xs uppercase tracking-[0.2em] mb-2 block">
+              {nextPost.tags[0]}
+            </span>
+            <h4 class="text-2xl group-hover:text-brand-primary transition-colors">
+              {nextPost.title}
+            </h4>
+          </a>
+        </div>
+      )
+    }
+  </article>
+</main>

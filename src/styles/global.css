@@ -50,7 +50,6 @@ body {
   font-family: var(--default-font-family);
   color: var(--color-gray-100);
   background-color: var(--color-main-black);
-  letter-spacing: -0.01em;
   font-size: 16px;
   scroll-behavior: smooth;
   box-sizing: border-box;
@@ -189,5 +188,51 @@ select option {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+.blog-content {
+  :where(p) {
+    @apply text-lg opacity-90 leading-relaxed mb-8;
+  }
+
+  :where(h2) {
+    @apply text-3xl font-bold mt-16 mb-6;
+  }
+
+  :where(h3) {
+    @apply text-2xl font-bold mt-12 mb-4;
+  }
+
+  :where(em) {
+    @apply text-brand-primary italic;
+  }
+
+  :where(a) {
+    @apply text-brand-primary underline underline-offset-4 hover:opacity-80;
+  }
+
+  :where(pre) {
+    @apply my-12 p-6 bg-secondary-black border-l-4 border-brand-primary font-mono text-sm overflow-x-auto;
+  }
+
+  :where(code) {
+    @apply text-gray-100;
+  }
+
+  :where(:not(pre) > code) {
+    @apply bg-white/10 px-1.5 py-0.5 rounded-sm text-sm;
+  }
+
+  :where(ul, ol) {
+    @apply text-lg opacity-90 leading-relaxed mb-8 pl-6;
+  }
+
+  :where(li) {
+    @apply mb-2;
+  }
+
+  :where(blockquote) {
+    @apply border-l-4 border-brand-primary/40 pl-6 my-8 opacity-90 italic;
   }
 }

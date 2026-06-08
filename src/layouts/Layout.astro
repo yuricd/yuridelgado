@@ -6,6 +6,18 @@ import "@fontsource/urbanist/700";
 
 import "../styles/global.css";
 
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title: titleProp,
+  description: descriptionProp,
+  canonical: canonicalProp,
+} = Astro.props;
+
 const ldSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -15,9 +27,11 @@ const ldSchema = {
     "I help you build your MVP and prototype the right way. Ship fast, but ship right.",
 };
 
-const titleDefault = "Yuri Delgado";
+const titleDefault = titleProp ?? "Yuri Delgado";
 const descriptionDefault =
+  descriptionProp ??
   "I help you build your MVP and prototype the right way. Ship fast, but ship right.";
+const canonicalDefault = canonicalProp ?? "https://yuridelgado.dev";
 ---
 
 <!doctype html>
@@ -25,7 +39,7 @@ const descriptionDefault =
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="canonical" href="https://yuridelgado.dev" />
+    <link rel="canonical" href={canonicalDefault} />
     <meta name="description" content={descriptionDefault} />
     <meta property="og:title" content={titleDefault} />
     <meta property="og:description" content={descriptionDefault} />
@@ -33,7 +47,7 @@ const descriptionDefault =
       property="og:image"
       content="https://yuridelgado.dev/images/cover-logo.jpg"
     />
-    <meta property="og:url" content="https://yuridelgado.dev" />
+    <meta property="og:url" content={canonicalDefault} />
     <meta
       name="twitter:card"
       content="https://yuridelgado.dev/images/cover-logo.jpg"
