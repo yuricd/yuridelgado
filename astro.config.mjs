@@ -13,6 +13,9 @@ export default defineConfig({
   site: "https://yuridelgado.dev",
   output: "server",
   adapter: node({ mode: "standalone" }),
+  server: {
+    port: 4322,
+  },
   vite: {
     plugins: [
       tailwindcss(),
