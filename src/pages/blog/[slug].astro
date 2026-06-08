@@ -4,6 +4,7 @@ import { Navbar } from "@/components/Navbar/Navbar";
 import BlogPost from "@/components/BlogPost/BlogPost.astro";
 import Footer from "@/components/Footer/Footer.astro";
 import { getPostBySlug, getNextPost } from "@/lib/blog";
+import { getSiteUrl } from "@/lib/site";
 import { render } from "astro:content";
 
 const { slug } = Astro.params;
@@ -21,7 +22,7 @@ if (!entry) {
 const { Content } = await render(entry);
 const nextPost = await getNextPost(slug);
 const title = `${entry.data.title} | Yuri Delgado`;
-const canonical = `https://yuridelgado.dev/blog/${slug}`;
+const canonical = getSiteUrl(`/blog/${slug}`);
 ---
 
 <Layout title={title} description={entry.data.excerpt} canonical={canonical}>

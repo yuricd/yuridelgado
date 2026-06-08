@@ -5,6 +5,7 @@ import "@fontsource/urbanist/600";
 import "@fontsource/urbanist/700";
 
 import "../styles/global.css";
+import { getSiteUrl } from "@/lib/site";
 
 interface Props {
   title?: string;
@@ -22,7 +23,7 @@ const ldSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   name: "Yuri Delgado",
-  url: "https://yuridelgado.dev",
+  url: getSiteUrl(),
   description:
     "I help you build your MVP and prototype the right way. Ship fast, but ship right.",
 };
@@ -31,7 +32,8 @@ const titleDefault = titleProp ?? "Yuri Delgado";
 const descriptionDefault =
   descriptionProp ??
   "I help you build your MVP and prototype the right way. Ship fast, but ship right.";
-const canonicalDefault = canonicalProp ?? "https://yuridelgado.dev";
+const canonicalDefault = canonicalProp ?? getSiteUrl();
+const coverImage = getSiteUrl("/images/cover-logo.jpg");
 ---
 
 <!doctype html>
@@ -43,15 +45,9 @@ const canonicalDefault = canonicalProp ?? "https://yuridelgado.dev";
     <meta name="description" content={descriptionDefault} />
     <meta property="og:title" content={titleDefault} />
     <meta property="og:description" content={descriptionDefault} />
-    <meta
-      property="og:image"
-      content="https://yuridelgado.dev/images/cover-logo.jpg"
-    />
+    <meta property="og:image" content={coverImage} />
     <meta property="og:url" content={canonicalDefault} />
-    <meta
-      name="twitter:card"
-      content="https://yuridelgado.dev/images/cover-logo.jpg"
-    />
+    <meta name="twitter:card" content={coverImage} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
