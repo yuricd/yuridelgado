@@ -1,5 +1,7 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 
+const WORDS_PER_MINUTE = 130;
+
 export type BlogPostPreview = {
   slug: string;
   title: string;
@@ -17,12 +19,29 @@ export function formatDate(date: Date) {
   });
 }
 
+function countWords(text: string) {
+  const withoutCode = text.replace(/```[\s\S]*?```/g, "");
+  const plain = withoutCode
+    .replace(/`[^`]+`/g, "")
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+    .replace(/[#*_~>-]/g, "");
+
+  return plain.split(/\s+/).filter(Boolean).length;
+}
+
+export function getReadingTime(body: string | undefined) {
+  const words = countWords(body ?? "");
+  const minutes = Math.max(1, Math.ceil(words / WORDS_PER_MINUTE));
+  return `${minutes} min`;
+}
+
 function toPreview(entry: CollectionEntry<"blog">): BlogPostPreview {
   return {
     slug: entry.id,
     title: entry.data.title,
     date: formatDate(entry.data.date),
-    readingTime: entry.data.readingTime,
+    readingTime: getReadingTime(entry.body),
     tags: entry.data.tags,
     excerpt: entry.data.excerpt,
   };

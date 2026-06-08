@@ -1,0 +1,33 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Navbar } from "@/components/Navbar/Navbar";
+import BlogPost from "@/components/BlogPost/BlogPost.astro";
+import Footer from "@/components/Footer/Footer.astro";
+import { getPostBySlug, getNextPost } from "@/lib/blog";
+import { render } from "astro:content";
+
+const { slug } = Astro.params;
+
+if (!slug) {
+  return Astro.redirect("/");
+}
+
+const entry = await getPostBySlug(slug);
+
+if (!entry) {
+  return Astro.redirect("/");
+}
+
+const { Content } = await render(entry);
+const nextPost = await getNextPost(slug);
+const title = `${entry.data.title} | Yuri Delgado`;
+const canonical = `https://yuridelgado.dev/blog/${slug}`;
+---
+
+<Layout title={title} description={entry.data.excerpt} canonical={canonical}>
+  <Navbar client:load />
+  <BlogPost entry={entry} nextPost={nextPost}>
+    <Content />
+  </BlogPost>
+  <Footer />
+</Layout>

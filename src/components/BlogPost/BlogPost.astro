@@ -1,6 +1,6 @@
 ---
 import BlogGhostText from "./BlogGhostText";
-import { formatDate } from "@/lib/blog";
+import { formatDate, getReadingTime } from "@/lib/blog";
 import type { BlogPostPreview } from "@/lib/blog";
 import type { CollectionEntry } from "astro:content";
 
@@ -10,7 +10,8 @@ interface Props {
 }
 
 const { entry, nextPost } = Astro.props;
-const { title, date, readingTime, tags } = entry.data;
+const { title, date, tags } = entry.data;
+const readingTime = getReadingTime(entry.body);
 ---
 
 <main class="pt-8 pb-24 px-6">
