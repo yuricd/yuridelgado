@@ -2,33 +2,80 @@
 import Layout from "@/layouts/Layout.astro";
 import { Navbar } from "@/components/Navbar/Navbar";
 import BlogPost from "@/components/BlogPost/BlogPost.astro";
+import NotFound from "@/components/NotFound/NotFound.astro";
 import Footer from "@/components/Footer/Footer.astro";
 import { getPostBySlug, getNextPost } from "@/lib/blog";
+import { buildBlogPostingSchema } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site";
+import { getCollection } from "astro:content";
 import { render } from "astro:content";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+  }));
+}
 
 const { slug } = Astro.params;
 
 if (!slug) {
-  return Astro.redirect("/");
+  Astro.response.status = 404;
 }
 
-const entry = await getPostBySlug(slug);
+const entry = slug ? await getPostBySlug(slug) : undefined;
 
-if (!entry) {
-  return Astro.redirect("/");
+if (slug && !entry) {
+  Astro.response.status = 404;
 }
 
-const { Content } = await render(entry);
-const nextPost = await getNextPost(slug);
-const title = `${entry.data.title} | Yuri Delgado`;
-const canonical = getSiteUrl(`/blog/${slug}`);
+const { Content } = entry ? await render(entry) : { Content: null };
+const nextPost = entry && slug ? await getNextPost(slug) : undefined;
+const title = entry
+  ? `${entry.data.title} | Yuri Delgado`
+  : "Page Not Found | Yuri Delgado";
+const description =
+  entry?.data.excerpt ?? "The page you are looking for does not exist.";
+const canonical = slug ? getSiteUrl(`/blog/${slug}`) : getSiteUrl("/blog");
+const jsonLd = entry
+  ? buildBlogPostingSchema({
+      title: entry.data.title,
+      url: canonical,
+      description: entry.data.excerpt,
+      datePublished: entry.data.date,
+      tags: entry.data.tags,
+    })
+  : undefined;
 ---
 
-<Layout title={title} description={entry.data.excerpt} canonical={canonical}>
-  <Navbar client:load />
-  <BlogPost entry={entry} nextPost={nextPost}>
-    <Content />
-  </BlogPost>
-  <Footer />
-</Layout>
+{
+  entry && Content ? (
+    <Layout
+      title={title}
+      description={description}
+      canonical={canonical}
+      ogType="article"
+      publishedTime={entry.data.date}
+      tags={entry.data.tags}
+      jsonLd={jsonLd}
+    >
+      <Navbar client:load />
+      <BlogPost entry={entry} nextPost={nextPost}>
+        <Content />
+      </BlogPost>
+      <Footer />
+    </Layout>
+  ) : (
+    <Layout
+      title={title}
+      description={description}
+      canonical={canonical}
+      noindex
+    >
+      <NotFound />
+    </Layout>
+  )
+}

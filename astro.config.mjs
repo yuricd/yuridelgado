@@ -7,6 +7,7 @@ import Icons from "unplugin-icons/vite";
 import node from "@astrojs/node";
 
 import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
 import { rehypeExternalLinks } from "./src/lib/rehype-external-links.ts";
 
 // https://astro.build/config
@@ -43,5 +44,5 @@ export default defineConfig({
     ],
   },
 
-  integrations: [react()],
+  integrations: [react(), sitemap()],
 });

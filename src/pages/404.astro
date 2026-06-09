@@ -1,0 +1,11 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import NotFound from "@/components/NotFound/NotFound.astro";
+
+const title = "Page Not Found | Yuri Delgado";
+const description = "The page you are looking for does not exist.";
+---
+
+<Layout title={title} description={description} noindex>
+  <NotFound />
+</Layout>
