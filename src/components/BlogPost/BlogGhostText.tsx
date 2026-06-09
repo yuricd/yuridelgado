@@ -20,7 +20,7 @@ export default function BlogGhostText() {
       <span
         ref={ghostRef}
         className="font-bold text-7xl md:text-[10rem] leading-none uppercase text-transparent transition-transform duration-75"
-        style={{ WebkitTextStroke: "1px rgba(202, 210, 77, 0.15)" }}
+        style={{ WebkitTextStroke: "1px rgb(253 253 93 / 0.15)" }}
       >
         Archive
       </span>

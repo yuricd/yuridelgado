@@ -69,7 +69,7 @@ export function Navbar() {
       <div
         className={cn(
           "fixed top-0 w-full z-50 flex h-24 px-6 md:px-12 justify-between items-center border-b transition-all duration-200",
-          scrolled || !onHomePage
+          scrolled
             ? "bg-main-black/100 backdrop-blur-sm border-white/10 h-16"
             : "border-b-transparent bg-transparent",
         )}
