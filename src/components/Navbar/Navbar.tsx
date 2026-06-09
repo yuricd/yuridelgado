@@ -24,7 +24,7 @@ export function Navbar() {
   // handle active section
   useEffect(() => {
     if (window.location.pathname.startsWith("/blog")) {
-      setActive("/#blog");
+      setActive("/blog");
       return;
     }
 
@@ -77,7 +77,7 @@ export function Navbar() {
         <a href="/" aria-label="Go to home">
           <Logo
             className={cn(
-              "text-gray-100/75 size-7 transition-all duration-300 hover:text-white",
+              "text-gray-100/75 size-6 transition-all duration-300 hover:text-white",
             )}
           />
         </a>

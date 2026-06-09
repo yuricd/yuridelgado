@@ -1,0 +1,20 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Navbar } from "@/components/Navbar/Navbar";
+import Footer from "@/components/Footer/Footer.astro";
+import BlogArchive from "@/components/BlogArchive/BlogArchive";
+import { getAllPosts } from "@/lib/blog";
+import { getSiteUrl } from "@/lib/site";
+
+const posts = await getAllPosts();
+const title = "Journal Archive | Yuri Delgado";
+const description =
+  "Technical and non-technical thoughts on software development, system design, and other topics.";
+const canonical = getSiteUrl("/blog");
+---
+
+<Layout title={title} description={description} canonical={canonical}>
+  <Navbar client:load />
+  <BlogArchive posts={posts} client:load />
+  <Footer />
+</Layout>

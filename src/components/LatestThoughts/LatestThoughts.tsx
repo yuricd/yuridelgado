@@ -52,7 +52,7 @@ export default function LatestThoughts({ posts }: LatestThoughtsProps) {
         </div>
 
         <a
-          href="/#blog"
+          href="/blog"
           className="text-brand-primary font-medium uppercase tracking-wide text-sm flex items-center gap-2 hover:gap-4 transition-all group pb-1 border-b border-brand-primary/20 hover:border-brand-primary"
         >
           Explore All Journal Entries
