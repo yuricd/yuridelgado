@@ -241,7 +241,7 @@ select option {
   }
 
   :where(img) {
-    @apply my-8 w-full rounded-sm;
+    @apply my-8 rounded-sm;
   }
 
   :where(table) {
