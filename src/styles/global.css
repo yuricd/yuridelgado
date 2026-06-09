@@ -229,11 +229,28 @@ select option {
   }
 
   :where(ul, ol) {
-    @apply text-lg opacity-90 leading-relaxed mb-8 pl-6;
+    @apply text-lg opacity-90 leading-relaxed mb-8 pl-6 space-y-3;
+    list-style-position: outside;
+  }
+
+  :where(ul) {
+    list-style-type: disc;
+  }
+
+  :where(ol) {
+    list-style-type: decimal;
   }
 
   :where(li) {
-    @apply mb-2;
+    @apply pl-2;
+  }
+
+  :where(li)::marker {
+    @apply text-brand-primary;
+  }
+
+  :where(li > ul, li > ol) {
+    @apply mt-3 mb-0;
   }
 
   :where(blockquote) {
