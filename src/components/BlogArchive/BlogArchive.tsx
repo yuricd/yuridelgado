@@ -45,7 +45,7 @@ function JournalRow({
         </div>
 
         <div className="md:col-span-6">
-          <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight group-hover:text-brand-primary transition-colors">
+          <h2 className="text-2xl md:text-3xl font-semibold uppercase group-hover:text-brand-primary transition-colors">
             {title}
           </h2>
         </div>
@@ -104,7 +104,7 @@ export default function BlogArchive({ posts }: BlogArchiveProps) {
           <div className="max-w-3xl">
             <div className="flex items-center gap-4 mb-4">
               <span className="text-brand-primary font-semibold uppercase tracking-[0.3em] text-sm">
-                System Registry
+                Blog
               </span>
             </div>
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter leading-none">
