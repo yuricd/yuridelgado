@@ -45,9 +45,6 @@ function JournalRow({
         </div>
 
         <div className="md:col-span-6">
-          <span className="text-gray-300/60 text-xs uppercase tracking-widest block mb-1">
-            Post Title
-          </span>
           <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-tight group-hover:text-brand-primary transition-colors">
             {title}
           </h2>
@@ -61,7 +58,7 @@ function JournalRow({
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="text-xs border border-white/20 px-2 py-0.5 uppercaser"
+                className="text-xs border border-white/20 px-2 py-0.5 uppercase tracking-widest"
               >
                 {tag}
               </span>

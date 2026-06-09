@@ -29,6 +29,8 @@ const articleVariants: Variants = {
 };
 
 export default function LatestThoughts({ posts }: LatestThoughtsProps) {
+  const latestPosts = posts.slice(0, 3);
+
   return (
     <div className="w-6xl max-w-11/12 mx-auto">
       <motion.div
@@ -72,13 +74,13 @@ export default function LatestThoughts({ posts }: LatestThoughtsProps) {
         viewport={{ once: true, amount: 0.2 }}
         variants={gridVariants}
       >
-        {posts.map(({ slug, date, title, tags }, index) => (
+        {latestPosts.map(({ slug, date, title, tags }, index) => (
           <motion.a
             key={slug}
             href={`/blog/${slug}`}
             variants={articleVariants}
             className={`p-8 lg:p-10 group cursor-pointer transition-colors hover:bg-white/5 flex flex-col min-h-[280px] ${
-              index < posts.length - 1
+              index < latestPosts.length - 1
                 ? "border-b md:border-b-0 md:border-r border-white/10"
                 : ""
             }`}
@@ -100,9 +102,16 @@ export default function LatestThoughts({ posts }: LatestThoughtsProps) {
             </Typography>
 
             <div className="flex justify-between items-center">
-              <span className="text-xs font-medium uppercase tracking-widest px-3 py-1 rounded-full bg-white/10 text-gray-100 group-hover:bg-brand-primary group-hover:text-main-black transition-colors">
-                {tags[0]}
-              </span>
+              <div className="flex gap-2 items-center">
+                {tags.slice(0, 3).map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-xs font-medium uppercase tracking-widest px-3 py-1 rounded-full bg-white/10 text-gray-100 group-hover:bg-brand-primary group-hover:text-main-black transition-colors"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
               <Icon
                 icon="hugeicons:arrow-up-right-01"
                 width={20}
