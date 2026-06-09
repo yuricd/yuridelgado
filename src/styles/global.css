@@ -204,8 +204,12 @@ select option {
     @apply text-2xl font-bold mt-12 mb-4;
   }
 
+  :where(h4) {
+    @apply text-xl font-bold mt-10 mb-3;
+  }
+
   :where(em) {
-    @apply text-brand-primary italic;
+    @apply italic;
   }
 
   :where(a) {
@@ -234,5 +238,35 @@ select option {
 
   :where(blockquote) {
     @apply border-l-4 border-brand-primary/40 pl-6 my-8 opacity-90 italic;
+  }
+
+  :where(img) {
+    @apply my-8 w-full rounded-sm;
+  }
+
+  :where(table) {
+    @apply my-12 border-collapse text-sm md:text-base;
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  :where(thead, tbody) {
+    display: table;
+    width: 100%;
+    min-width: 32rem;
+    table-layout: fixed;
+  }
+
+  :where(th, td) {
+    @apply border border-white/10 px-4 py-3 text-center align-middle opacity-90;
+  }
+
+  :where(th) {
+    @apply bg-secondary-black font-bold text-brand-primary uppercase tracking-wide text-xs md:text-sm opacity-100;
+  }
+
+  :where(tbody tr:nth-child(even) td) {
+    @apply bg-white/[0.02];
   }
 }

@@ -7,9 +7,13 @@ import Icons from "unplugin-icons/vite";
 import node from "@astrojs/node";
 
 import react from "@astrojs/react";
+import { rehypeExternalLinks } from "./src/lib/rehype-external-links.ts";
 
 // https://astro.build/config
 export default defineConfig({
+  markdown: {
+    rehypePlugins: [rehypeExternalLinks],
+  },
   site: "https://yuridelgado.dev",
   output: "server",
   adapter: node({ mode: "standalone" }),
