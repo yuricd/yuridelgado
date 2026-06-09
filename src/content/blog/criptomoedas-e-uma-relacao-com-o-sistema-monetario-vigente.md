@@ -1,7 +1,7 @@
 ---
 title: "Criptomoedas e uma relação com o sistema monetário vigente"
 date: 2021-11-26
-tags: ["Economy"]
+tags: ["Crypto", "Bitcoin", "Economy", "Market"]
 excerpt: "Uma análise do conceito de moeda, das propriedades desejáveis em meios de troca, e da relação entre criptomoedas e o sistema monetário fiduciário vigente."
 ---
 
