@@ -1,15 +1,19 @@
 ---
 import BlogGhostText from "./BlogGhostText";
+import TableOfContents from "./TableOfContents.astro";
 import { formatDate, getReadingTime } from "@/lib/blog";
 import type { BlogPostPreview } from "@/lib/blog";
+import { shouldShowToc, type BlogTocHeading } from "@/lib/blog-toc";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
   entry: CollectionEntry<"blog">;
   nextPost?: BlogPostPreview;
+  headings?: BlogTocHeading[];
 }
 
-const { entry, nextPost } = Astro.props;
+const { entry, nextPost, headings = [] } = Astro.props;
+const showToc = shouldShowToc(headings);
 const { title, date, tags, humanAuthored } = entry.data;
 const readingTime = getReadingTime(entry.body);
 ---
@@ -36,7 +40,7 @@ const readingTime = getReadingTime(entry.body);
     </a>
   </div>
 
-  <header class="max-w-4xl mx-auto mb-20 relative">
+  <header class="max-w-4xl mx-auto mb-12 relative">
     <BlogGhostText client:load />
 
     <h1
@@ -75,39 +79,54 @@ const readingTime = getReadingTime(entry.body);
     </div>
   </header>
 
-  <article class="max-w-3xl mx-auto blog-content">
-    {
-      humanAuthored && (
-        <aside
-          class="mb-10 bg-secondary-black px-5 py-4 opacity-90 not-italic rounded-sm"
-          role="note"
-        >
-          <span class="!mb-0 text-sm">
-            The writing is 100% human. AI tools were used only for grammar
-            checking.
-          </span>
-        </aside>
-      )
-    }
-    <slot />
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col xl:flex-row xl:gap-16 xl:items-start">
+      <article class="min-w-0 flex-1 max-w-3xl blog-content">
+        {
+          humanAuthored && (
+            <aside
+              class="mb-10 bg-secondary-black px-5 py-4 opacity-90 not-italic rounded-sm"
+              role="note"
+            >
+              <span class="!mb-0 text-sm">
+                The writing is 100% human. AI tools were used only for grammar
+                checking.
+              </span>
+            </aside>
+          )
+        }
+        <slot />
 
-    {
-      nextPost && (
-        <div class="mt-20 pt-10 border-t border-white/10">
-          <h3 class="text-2xl mb-6">Next archive entry</h3>
-          <a
-            href={`/blog/${nextPost.slug}`}
-            class="group block p-8 bg-secondary-black hover:bg-white/5 transition-colors"
+        {
+          nextPost && (
+            <div class="mt-20 pt-10 border-t border-white/10">
+              <h3 class="text-2xl mb-6">Next archive entry</h3>
+              <a
+                href={`/blog/${nextPost.slug}`}
+                class="group block p-8 bg-secondary-black hover:bg-white/5 transition-colors"
+              >
+                <span class="text-brand-primary text-xs uppercase tracking-[0.2em] mb-2 block">
+                  {nextPost.tags[0]}
+                </span>
+                <h4 class="text-2xl group-hover:text-brand-primary transition-colors">
+                  {nextPost.title}
+                </h4>
+              </a>
+            </div>
+          )
+        }
+      </article>
+
+      {
+        showToc && (
+          <aside
+            class="hidden xl:block w-56 shrink-0 min-w-0 sticky top-24 self-start max-h-[calc(100vh-7rem)] overflow-y-auto overflow-x-hidden"
+            aria-label="Table of contents"
           >
-            <span class="text-brand-primary text-xs uppercase tracking-[0.2em] mb-2 block">
-              {nextPost.tags[0]}
-            </span>
-            <h4 class="text-2xl group-hover:text-brand-primary transition-colors">
-              {nextPost.title}
-            </h4>
-          </a>
-        </div>
-      )
-    }
-  </article>
+            <TableOfContents headings={headings} levels={3} />
+          </aside>
+        )
+      }
+    </div>
+  </div>
 </main>

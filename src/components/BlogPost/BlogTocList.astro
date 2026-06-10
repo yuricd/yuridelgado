@@ -1,0 +1,34 @@
+---
+import type { BlogTocNode } from "@/lib/blog-toc";
+import BlogTocListNested from "./BlogTocList.astro";
+
+interface Props {
+  nodes: BlogTocNode[];
+  nested?: boolean;
+}
+
+const { nodes, nested = false } = Astro.props;
+---
+
+<ul
+  class:list={[
+    "flex flex-col gap-2 list-none min-w-0",
+    nested ? "mt-2 pl-3 border-l border-white/10" : "",
+  ]}
+>
+  {
+    nodes.map((node) => (
+      <li class="!pl-0 !mb-0 min-w-0">
+        <a
+          href={`#${node.slug}`}
+          class="toc-link block text-sm text-gray-100/70 transition-colors hover:text-brand-primary break-words [&.toc-current]:text-brand-primary [&.toc-current]:font-medium"
+        >
+          {node.text}
+        </a>
+        {node.children.length > 0 && (
+          <BlogTocListNested nodes={node.children} nested />
+        )}
+      </li>
+    ))
+  }
+</ul>

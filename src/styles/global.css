@@ -210,11 +210,11 @@ select option {
 
 .blog-content {
   :where(p) {
-    @apply opacity-90 leading-relaxed mb-8;
+    @apply opacity-90 leading-relaxed mb-6;
   }
 
   :where(h2) {
-    @apply text-3xl font-bold mt-16 mb-6;
+    @apply text-3xl font-bold mt-14 mb-6;
   }
 
   :where(h3) {

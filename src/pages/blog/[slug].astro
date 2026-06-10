@@ -32,7 +32,9 @@ if (slug && !entry) {
   Astro.response.status = 404;
 }
 
-const { Content } = entry ? await render(entry) : { Content: null };
+const { Content, headings } = entry
+  ? await render(entry)
+  : { Content: null, headings: [] };
 const nextPost = entry && slug ? await getNextPost(slug) : undefined;
 const title = entry
   ? `${entry.data.title} | Yuri Delgado`
@@ -63,7 +65,7 @@ const jsonLd = entry
       jsonLd={jsonLd}
     >
       <Navbar client:load />
-      <BlogPost entry={entry} nextPost={nextPost}>
+      <BlogPost entry={entry} nextPost={nextPost} headings={headings}>
         <Content />
       </BlogPost>
       <Footer />

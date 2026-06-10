@@ -1,0 +1,117 @@
+---
+import type { BlogTocHeading } from "@/lib/blog-toc";
+import { buildTocTree } from "@/lib/blog-toc";
+import BlogTocList from "./BlogTocList.astro";
+
+interface Props {
+  headings: BlogTocHeading[];
+  levels?: 2 | 3;
+}
+
+const { headings, levels = 3 } = Astro.props;
+const maxDepth = levels + 1;
+const tocTree = buildTocTree(headings, maxDepth);
+---
+
+<div
+  class="min-w-0 border border-white/10 bg-secondary-black/50 rounded-sm p-4 text-sm leading-snug break-words"
+>
+  <p
+    class="text-xs uppercase tracking-widest text-gray-300/60 font-medium mb-4"
+  >
+    Table of contents
+  </p>
+  <BlogTocList nodes={tocTree} />
+</div>
+
+<script>
+  let observer: IntersectionObserver | null = null;
+  const headingVisibility = new Map<Element, boolean>();
+  const NAV_OFFSET = 120;
+
+  function setActiveHeading(activeId: string) {
+    document.querySelectorAll(".toc-link").forEach((link) => {
+      link.classList.toggle(
+        "toc-current",
+        link.getAttribute("href") === `#${activeId}`,
+      );
+    });
+  }
+
+  function resolveActiveHeading(headings: Element[]) {
+    const visible = headings.filter((heading) =>
+      headingVisibility.get(heading),
+    );
+
+    if (visible.length > 0) {
+      return visible.reduce((topmost, heading) =>
+        heading.getBoundingClientRect().top <
+        topmost.getBoundingClientRect().top
+          ? heading
+          : topmost,
+      );
+    }
+
+    let active = headings[0];
+
+    for (const heading of headings) {
+      if (heading.getBoundingClientRect().top <= NAV_OFFSET) {
+        active = heading;
+      } else {
+        break;
+      }
+    }
+
+    return active;
+  }
+
+  function setCurrent(entries: IntersectionObserverEntry[]) {
+    entries.forEach((entry) => {
+      headingVisibility.set(entry.target, entry.isIntersecting);
+    });
+
+    const content = document.querySelector(".blog-content");
+    if (!content) {
+      return;
+    }
+
+    const headings = [...content.querySelectorAll("h2, h3, h4")];
+    if (!headings.length) {
+      return;
+    }
+
+    const active = resolveActiveHeading(headings);
+    if (active?.id) setActiveHeading(active.id);
+  }
+
+  function initTOC() {
+    observer?.disconnect();
+    observer = null;
+    headingVisibility.clear();
+
+    const content = document.querySelector(".blog-content");
+    if (!content) return;
+
+    const headings = [...content.querySelectorAll("h2, h3, h4")];
+    if (!headings.length) return;
+
+    headings.forEach((heading) => {
+      heading.classList.add("scroll-mt-24");
+      headingVisibility.set(heading, false);
+    });
+
+    const active = resolveActiveHeading(headings);
+    if (active?.id) setActiveHeading(active.id);
+
+    observer = new IntersectionObserver(setCurrent, {
+      root: null,
+      rootMargin: `-${NAV_OFFSET}px 0px -55% 0px`,
+      threshold: 0,
+    });
+
+    headings.forEach((heading) => observer?.observe(heading));
+  }
+
+  initTOC();
+  document.addEventListener("astro:after-swap", initTOC);
+</script>
