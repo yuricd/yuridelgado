@@ -10,7 +10,7 @@ interface Props {
 }
 
 const { entry, nextPost } = Astro.props;
-const { title, date, tags } = entry.data;
+const { title, date, tags, humanAuthored } = entry.data;
 const readingTime = getReadingTime(entry.body);
 ---
 
@@ -76,6 +76,19 @@ const readingTime = getReadingTime(entry.body);
   </header>
 
   <article class="max-w-3xl mx-auto blog-content">
+    {
+      humanAuthored && (
+        <aside
+          class="mb-10 bg-secondary-black px-5 py-4 opacity-90 not-italic rounded-sm"
+          role="note"
+        >
+          <span class="!mb-0 text-sm">
+            FYI, this text was not AI-generated. The writing is 100% human. AI
+            tools were used only for grammar checking.
+          </span>
+        </aside>
+      )
+    }
     <slot />
 
     {
