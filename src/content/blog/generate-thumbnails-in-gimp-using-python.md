@@ -1,7 +1,7 @@
 ---
 title: "Generate thumbnails in GIMP using Python"
 date: 2021-03-12
-tags: ["Development"]
+tags: ["Python", "Automation", "GIMP"]
 excerpt: "Build a GIMP Python-Fu plugin to generate YouTube-style thumbnails automatically from a background image, overlay text, and an optional foreground picture."
 ---
 
@@ -60,7 +60,7 @@ Now, thinking about parameters we'll read:
 
 If you still don't have it, download and install [GIMP](https://www.gimp.org/).
 
-We are going to use a feature of GIMP called [Python-Fu](https://docs.gimp.org/en/gimp-filters-python-fu.html) that allows us to write Python code and turn it into a plug-in to manipulate elements in the screen. The main procedures in GIMP are written in a functional [Lisp dialect](https://en.wikipedia.org/wiki/Lisp_(programming_language)) called [Scheme](https://en.wikipedia.org/wiki/Scheme_(programming_language)). GIMP exposes them in an API called [Procedure Database (PDB)](https://www.gimp.org/docs/python/procedural-database.html). This API will be our confederate while we develop the plug-in.
+We are going to use a feature of GIMP called [Python-Fu](https://docs.gimp.org/en/gimp-filters-python-fu.html) that allows us to write Python code and turn it into a plug-in to manipulate elements in the screen. The main procedures in GIMP are written in a functional [Lisp dialect](<https://en.wikipedia.org/wiki/Lisp_(programming_language)>) called [Scheme](<https://en.wikipedia.org/wiki/Scheme_(programming_language)>). GIMP exposes them in an API called [Procedure Database (PDB)](https://www.gimp.org/docs/python/procedural-database.html). This API will be our confederate while we develop the plug-in.
 
 In order to make GIMP recognize a script as a plug-in, we must add the Python file within the GIMP's plug-in folder. To check or change where GIMP folders are located in your machine, open GIMP and go to `Edit > Preferences > Folders`. In my machine they are located in `~/.config/GIMP/2.10`.
 
@@ -87,7 +87,7 @@ Create a file called `thumbnail_generator.py` (or any other name you want) withi
 ```python
 def thumb_generator(background_path, picture_path, first_line, second_line, third_line, font_face, color=(0.0, 0.0, 0.0)):
     pass
-    
+
 register(
     "python_fu_thumb_generator",
     "Thumb generator",
@@ -96,7 +96,7 @@ register(
     "Yuri Delgado",
     "2021",
     "Thumbnail Generator",
-    "",     
+    "",
     [
         (PF_STRING, 'background_path', '* Background path', ''),
         (PF_STRING, 'picture_path', 'Picture path', ''),
@@ -265,7 +265,7 @@ In line 2 I [flushed](http://oldhome.schmorp.de/marc/pdb/gimp_displays_flush.htm
 The overlay is just a layer with a white background and opacity that covers the whole background image.
 
 ```python
-overlay = my.create_layer(image=img, width=img.width, height=img.height, image_type=RGB_IMAGE, 
+overlay = my.create_layer(image=img, width=img.width, height=img.height, image_type=RGB_IMAGE,
                            name='overlay', opacity=35, mode=NORMAL_MODE, add_to_img=False)
 overlay.fill(FILL_WHITE)
 my.add_layer(img, overlay)
@@ -277,7 +277,7 @@ Here I considered the height of the bottom rectangle as 9% of the background siz
 
 ```python
 bottom_rect_h = int(round(img.height * .09))
-bottom_rect_layer = my.create_layer(image=img, width=img.width, height=bottom_rect_h, image_type=RGB_IMAGE, 
+bottom_rect_layer = my.create_layer(image=img, width=img.width, height=bottom_rect_h, image_type=RGB_IMAGE,
                                     name='bottom_rect', opacity=100, mode=NORMAL_MODE)
 pdb.gimp_drawable_edit_fill(bottom_rect_layer,FILL_FOREGROUND)
 my.translate_layer(bottom_rect_layer, 0, img.height - bottom_rect_h)
@@ -312,18 +312,18 @@ font_size_big = img.height * .24
 font_size_ordinary = img.height * .12
 margin_top = img.height / 7
 margin_left = img.width / 25
-    
-first_line_layer = my.add_text(image=img, x=margin_left, y=margin_top, content=first_line, 
+
+first_line_layer = my.add_text(image=img, x=margin_left, y=margin_top, content=first_line,
                                font_size=font_size_big, font_face=font_face)
-    
-second_line_layer = my.add_text(image=img, x=margin_left, y=margin_top + font_size_big, 
+
+second_line_layer = my.add_text(image=img, x=margin_left, y=margin_top + font_size_big,
                                 content=' ' + second_line + ' ',  font_size=font_size_ordinary, font_face=font_face)
 my.set_layer_text_color(second_line_layer, '#FFF')
 pdb.gimp_selection_all(img)
 pdb.gimp_edit_bucket_fill(second_line_layer, BUCKET_FILL_FG, LAYER_MODE_BEHIND, 100, 0, False, 0, 0)
-    
+
 tl_top = margin_top + font_size_big + font_size_ordinary
-third_line_layer = my.add_text(image=img, x=margin_left, y=tl_top, content=third_line, 
+third_line_layer = my.add_text(image=img, x=margin_left, y=tl_top, content=third_line,
                                font_size=font_size_ordinary, font_face=font_face)
 ```
 

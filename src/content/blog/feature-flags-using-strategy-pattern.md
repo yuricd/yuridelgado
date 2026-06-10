@@ -1,7 +1,7 @@
 ---
 title: "Feature flags using Strategy pattern"
 date: 2022-02-07
-tags: ["Development"]
+tags: ["Design Pattern", "JavaScript"]
 excerpt: "How to implement feature flags in JavaScript using the Strategy pattern and dependency injection to keep application code decoupled from toggle logic."
 ---
 
@@ -18,13 +18,13 @@ Let's say you're creating a group of beta testers (or running an A/B test) to a 
 
 ```javascript
 const main = () => {
-  const showNewFeature = false
+  const showNewFeature = false;
   if (showNewFeature) {
     // new code
   } else {
     // old code
-  }  
-}
+  }
+};
 ```
 
 It works. Perhaps it's not the most elegant solution, but it works. If you have a limited number of flags and they're temporary, I think it's good enough. However, imagine your team is growing and many developers are working on new stuff. It'll become harder and harder to manage these flags, to test, and the code can become really messy.
@@ -33,14 +33,14 @@ Another way to implement it is making use of the [dependency injection](https://
 
 ```javascript
 const main = (config) => {
-  if (config['showNewFeature']){
+  if (config["showNewFeature"]) {
     // new code
   } else {
     // old code
   }
-}
-  
-const config = { 'showNewFeature': true }
+};
+
+const config = { showNewFeature: true };
 ```
 
 Slightly better, but we still have some coupling concerns. Your feature code has to be aware of a new dependency, the config dependency. What if we could do the opposite, instead of the new feature being aware of the feature flag config, your application would have control of it in a more transparent way?
@@ -53,12 +53,12 @@ Consider you have to render a navigation menu. The list of links in the menu wil
 
 ```javascript
 const main = (config) => {
-  if (config['useSpecialMenu']){
-    return specialMenu
+  if (config["useSpecialMenu"]) {
+    return specialMenu;
   } else {
-    return generalMenu
+    return generalMenu;
   }
-}
+};
 ```
 
 The `config` object would be injected similarly as we did before.
@@ -70,9 +70,9 @@ Applying the Strategy pattern, we could pass the responsibility of the decision 
 ```javascript
 // menu.js
 const generateMenu = (addBehavior) => {
-  const generalMenu = ['Main', 'Customers', 'Orders']
-  return addBehavior(generalMenu)
-}
+  const generalMenu = ["Main", "Customers", "Orders"];
+  return addBehavior(generalMenu);
+};
 ```
 
 The function above receives a behavior function via parameter and returns the behavior function receiving the default list. It's possible to change the general menu as you wish when calling the `generateMenu` function. We can add, remove, or keep the original list as it is.
@@ -81,17 +81,17 @@ The function above receives a behavior function via parameter and returns the be
 // featuresFactory.js
 const createFeaturesBasedOnFlags = (config) => {
   function createMenu() {
-    if (config['useSpecialMenu']) {
-      const createSpecialMenu = (menu) => [...menu, 'Manage Users']
-      return generateMenu(createSpecialMenu)
+    if (config["useSpecialMenu"]) {
+      const createSpecialMenu = (menu) => [...menu, "Manage Users"];
+      return generateMenu(createSpecialMenu);
     } else {
-      return generateMenu(x => x)
+      return generateMenu((x) => x);
     }
   }
   // other features
-  
-  return { createMenu }
-}
+
+  return { createMenu };
+};
 ```
 
 Now, we added another layer of abstraction. Remember I said that if/else statements can make the code messy and coupled? Indeed we are still using the conditionals, but with one difference: this layer is responsible for abstracting all the feature flags, whereas the previous menu function has no idea about them. The original function that returns the "general" list is still there, and the factory is ready to inject a new behavior to the "general" menu, adding one more item to it. The `else` statement will pass an [identity function](https://en.wikipedia.org/wiki/Identity_function) to `createMenu`, which means that nothing will happen to the original menu.
@@ -99,9 +99,9 @@ Now, we added another layer of abstraction. Remember I said that if/else stateme
 ## Usage
 
 ```javascript
-const factory = createFeaturesBasedOnFlags({'useSpecialMenu': true})
-const newMenu = factory.createMenu()
-console.log(newMenu) // ["Main", "Customers", "Orders", "Manage Users"]
+const factory = createFeaturesBasedOnFlags({ useSpecialMenu: true });
+const newMenu = factory.createMenu();
+console.log(newMenu); // ["Main", "Customers", "Orders", "Manage Users"]
 ```
 
 If you define `useSpecialMenu` to `false`, "Manage Users" won't be displayed anymore.
@@ -113,16 +113,16 @@ It'd be also interesting to create a layer to define the features flags and thei
 ```javascript
 // featureSetting.js
 const feature = (config) => {
-  function setFeature(name, isEnabled){
+  function setFeature(name, isEnabled) {
     config[name] = isEnabled;
   }
-  
-  function isEnabled(name){
+
+  function isEnabled(name) {
     return config[name];
   }
-  
-  return { setFeature, isEnabled }
-}
+
+  return { setFeature, isEnabled };
+};
 ```
 
 `setFeature` will set a feature to either true or false, and `isEnable` gets the boolean associated with that key.
@@ -131,20 +131,20 @@ Now, let's say we'll only allow users with more than 10 clients to see the speci
 ```javascript
 // featureConditions.js
 const featureConditions = () => {
-  const config = {}
-  const myFeatures = feature(config)
-  
+  const config = {};
+  const myFeatures = feature(config);
+
   function useSpecialMenu() {
     if (logedUser.clients.length > 10) {
-      myFeatures.setFeature('useSpecialMenu', true)
+      myFeatures.setFeature("useSpecialMenu", true);
     } else {
-      myFeatures.setFeature('useSpecialMenu', false)
+      myFeatures.setFeature("useSpecialMenu", false);
     }
-    return myFeatures.isEnabled('useSpecialMenu')
+    return myFeatures.isEnabled("useSpecialMenu");
   }
-  
-  return { useSpecialMenu }
-}
+
+  return { useSpecialMenu };
+};
 ```
 
 Note: it's called `useSpecialMenu` but it's not a React hook!
@@ -156,20 +156,20 @@ Cool, now it's time to use the new structure in the factory:
 ```javascript
 // featuresFactory.js
 const createFeaturesBasedOnFlags = (featureConditions) => {
-  const conditions = featureConditions()
-  
+  const conditions = featureConditions();
+
   function createMenu() {
     if (conditions.useSpecialMenu()) {
-      const createSpecialMenu = (menu) => [...menu, 'Manage Users']
-      return generateMenu(createSpecialMenu)
+      const createSpecialMenu = (menu) => [...menu, "Manage Users"];
+      return generateMenu(createSpecialMenu);
     } else {
-      return generateMenu(x => x)
+      return generateMenu((x) => x);
     }
   }
   // other features
-  
-  return { createMenu }
-}
+
+  return { createMenu };
+};
 ```
 
 Instead of calling directly the `config` object like before, we call the method responsible for telling us if the user is able to see the special menu.

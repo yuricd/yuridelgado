@@ -2,7 +2,7 @@
 title: "What's new in ECMAScript 2022 (ES13)"
 date: 2023-01-24
 tags: ["JavaScript", "ES13"]
-excerpt: "A tour of ECMAScript 2022 (ES13) — top-level await, class fields, static blocks, RegExp match indices, Object.hasOwn, error cause, and more."
+excerpt: "A tour of ECMAScript 2022 (ES13): top-level await, class fields, static blocks, RegExp match indices, Object.hasOwn, error cause, and more."
 ---
 
 In this post, I'll talk about the new standards that ES13 (2022) brought.

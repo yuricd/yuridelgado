@@ -1,7 +1,7 @@
 ---
 title: "Automate tasks: essential softwares for Fedora"
 date: 2021-02-25
-tags: ["Development"]
+tags: ["Linux", "Fedora", "OS", "Docker"]
 excerpt: "A bash script to automate essential software installation on Fedora after a clean install, with Docker-based testing."
 ---
 
