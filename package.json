@@ -13,6 +13,7 @@
     "@astrojs/node": "^9.4.4",
     "@astrojs/react": "^4.3.1",
     "@astrojs/sitemap": "^3.7.3",
+    "@fontsource/inter": "^5.2.8",
     "@fontsource/urbanist": "^5.2.7",
     "@iconify/react": "^6.0.2",
     "@radix-ui/react-dialog": "^1.1.15",

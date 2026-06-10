@@ -26,8 +26,7 @@ function JournalRow({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{
-        duration: 0.6,
-        ease: [0.23, 1, 0.32, 1],
+        duration: 0.4,
         delay: index * 0.1,
       }}
     >

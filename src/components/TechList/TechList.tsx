@@ -38,7 +38,7 @@ const techIcons = [
     iconName: "simple-icons:astro",
     name: "Astro",
     description:
-      "One of my newest and happiest discoveries. It’s an open-source framework that supports both static and SSR sites, with out-of-the-box integration for Vue, Svelte, and React.",
+      "It’s an open-source framework that supports both static and SSR sites, with out-of-the-box integration for Vue, Svelte, and React.",
   },
   {
     iconName: "simple-icons:tailwindcss",

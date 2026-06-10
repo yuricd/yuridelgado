@@ -7,7 +7,7 @@ excerpt: "Lessons from a year building and publishing OrbiGuide on Google Play a
 
 Since I was 15, I've been developing for the web because that's the most democratic and accessible way to share information. It doesn't require the audience to download or install anything. Everybody has a browser, and in the last few years new features and APIs have come to browsers, closing the gap between mobile and web experiences. PWAs were a big step in that direction too. However, there are still some things that can only be created on mobile apps, or at least with a decent mobile UX.
 
-It's been a year now since I created OrbiGuide. My original plan was to make it a web app, but it requires functionality that is better supported at the device level. Also, PWAs on iOS devices are more limited.
+It's been a year now since I created [OrbiGuide](https://orbiguide.com/?ref=yuridelgado.dev). My original plan was to make it a web app, but it requires functionality that is better supported at the device level. Also, PWAs on iOS devices are more limited.
 
 After careful thought, I decided to make it a mobile app, available for both Android and iOS. The good part is: ~99% of the world's mobile devices run either Android or iOS. Audience coverage: ✅.  
 Unlike installing PWAs, which isn't a common procedure, people are pretty familiar with downloading apps on their phones. The installation experience: ✅.  
@@ -69,7 +69,7 @@ In summary, it mandates strict age verification and parental consent requirement
 
 Google Play Store requires at least 12 opt-in testers to use your app for 14 continuous days before you can publish your first app as an individual developer. You're excited and want to show your app to the world, but hold on. First, get 12 people to test your app and wait 14 days.
 
-## A third-party may be required to streamline billing (RevenueCat)
+## A third-party may be required to streamline billing
 
 Each app store has its own billing platform and rules. Figuring that out by yourself and integrating with them may be unnecessarily difficult. Solutions like RevenueCat handle that for you, and compared to the stores' fees, it's worth it.
 
