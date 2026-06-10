@@ -79,7 +79,7 @@ iOS apps must be compiled and tested on Apple devices, like MacBooks. I'm a Linu
 
 The process of building and preparing the bundle to submit takes time and involves several steps. To help me with that I decided to use Expo. The build and submission processes for both Android and iOS were much easier with it. Downsides: if you want more speed and quota, you'll have to pay; it's another vendor that locks you in. And talking about lock-in...
 
-### Leaving them is difficult
+## Leaving them is difficult
 
 If you've decided to build a mobile app but don't want to be held hostage to those companies, what options do you have besides a PWA?
 
